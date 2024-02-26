@@ -10,7 +10,6 @@ import Firebase
 import FirebaseAuth
 
 struct LoggedInView: View {
-    
     @StateObject var viewModel: LoggedInHomeViewModel = LoggedInHomeViewModel()
     
     var body: some View {
@@ -29,6 +28,14 @@ struct LoggedInView: View {
                 .toolbar(.hidden)
         case .loaded(let courseList):
             VStack {
+                Text("Classes")
+                    .font(.largeTitle) // Makes the font larger and more prominent
+                    .fontWeight(.bold) // Makes the text bold
+                    .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
+                     // Optionally, add vertical padding for spacing
+                    .padding(.vertical, 10)
                 List {
                     ForEach(courseList) { course in
                         NavigationLink {
@@ -56,6 +63,7 @@ struct LoggedInView: View {
                 }
             }
             .toolbar(.hidden)
+            .padding(.leading, 0)
         }
     }
     
@@ -74,3 +82,4 @@ struct LoggedInView_Previews: PreviewProvider {
         LoggedInView()
     }
 }
+

@@ -19,8 +19,23 @@ struct ImportClassesView: View {
         VStack {
             Text("Paste WebSTAC output below:")
                 .padding()
-            TextField("Paste here...", text: $classText)
-                .padding()
+            
+            ZStack(alignment: .topLeading) {
+                TextEditor(text: $classText)
+                    .padding(4)
+                    .frame(height: 200)
+                    .border(Color.gray, width: 1)
+                    .cornerRadius(5)
+                            
+                if classText.isEmpty {
+                    Text("Enter your classes here...")
+                        .foregroundColor(.gray)
+                        .padding(.leading, 5)
+                        .padding(.top, 8)
+                        .padding(.horizontal)
+                }
+                    }
+                    .padding(.horizontal)
             Button {
                 if validInput {
                     // import classes

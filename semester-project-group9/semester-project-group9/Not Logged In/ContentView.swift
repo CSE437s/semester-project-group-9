@@ -17,6 +17,9 @@ struct ContentView: View {
     @State private var presentLogin: Bool = false
     @AppStorage("uid") var userID: String = ""
     @AppStorage("email") var userEmail: String = ""
+    @State private var showingAlert = false
+    @State private var alertMessage = "Please use your @wustl.edu email to register."
+
     
     var body: some View {
         NavigationStack {
@@ -38,20 +41,19 @@ struct ContentView: View {
                 Spacer()
                 
                 Button {
-                    if validInput {
-                        presentRegistration = true
-                        register()
-                    }
-                } label : {
+                    // Call register which includes validation, registration, and conditional navigation
+                    register()
+                } label: {
                     Text("Register")
                 }
-                    .navigationDestination(isPresented: $presentRegistration) {
-                        RegistrationView()
-                    }
-                    .padding()
-                    .background(.gray)
-                    .cornerRadius(12)
-                    .foregroundColor(.white)
+                .padding()
+                .background(.gray)
+                .cornerRadius(12)
+                .foregroundColor(.white)
+                .navigationDestination(isPresented: $presentRegistration) {
+                    RegistrationView()
+                }
+
 
                 Button {
                     if validInput {
@@ -76,23 +78,39 @@ struct ContentView: View {
             }
         }
         .toolbar(.hidden)
+        .alert("Invalid Email", isPresented: $showingAlert) {
+            Button("OK", role: .cancel) { }
+        }
+        message: {
+            Text(alertMessage)
+        }
+        
     }
     
     func register() {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            if let error = error {
-                print(error.localizedDescription)
+        if email.hasSuffix("@wustl.edu") {
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                if let error = error {
+                    alertMessage = error.localizedDescription
+                    showingAlert = true
+                } else if let result = result {
+                    print(result.user.uid)
+                    userID = result.user.uid
+                    userEmail = email
+                    // Proceed with navigation only after successful registration
+                    DispatchQueue.main.async {
+                        presentRegistration = true
+                        
+                    }
+                    
+                }
             }
-            
-            if let result = result {
-                print(result.user.uid)
-                userID = result.user.uid
-                userEmail = email
-            }
-            
+        } else {
+            alertMessage = "Please use your @wustl.edu email to register."
+            showingAlert = true
         }
     }
-    
+
     func login() {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {

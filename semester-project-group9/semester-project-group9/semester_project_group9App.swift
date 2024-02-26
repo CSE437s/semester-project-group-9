@@ -22,6 +22,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct semester_project_group9App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @AppStorage("uid") var userID: String = ""
     var body: some Scene {
         WindowGroup {
             ContentView()

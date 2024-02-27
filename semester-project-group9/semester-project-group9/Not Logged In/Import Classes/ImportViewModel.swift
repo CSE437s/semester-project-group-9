@@ -20,7 +20,7 @@ class ImportViewModel: ObservableObject {
                 
         let leadingWhitespace = classInput.prefix(while: {$0.isWhitespace})
         let trimmedStr = String(classInput[leadingWhitespace.endIndex...])
-        let courseBlocks = trimmedStr.split(separator: " \t")
+        let courseBlocks = trimmedStr.split(separator: "expand\t\n")
         
         print(courseBlocks)
         
@@ -29,29 +29,31 @@ class ImportViewModel: ObservableObject {
         for block in courseBlocks {
             let parts = block.split(separator: "Days & Time\tBld. / Room")
             let courseName = parts[0].trimmingCharacters(in: .whitespacesAndNewlines)
-            let details = parts[1].trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "\t")
-            
-            print(details)
-            
-            let daysAndTime = details[0].split(separator: " ")
-            let buildingRoom = details[1]
-            
-            let days = daysAndTime[0]
-            let times = daysAndTime[1]
-            
-            let classIdentifier = String(courseName + days + times + buildingRoom)
-            let id = classIdentifier.replacingOccurrences(of: "/", with: "")
-            
-            let courseDict: [String : String] = [
-                "name": String(courseName),
-                "days": String(days),
-                "times": String(times),
-                "building_room": String(buildingRoom),
-                "class-id": String(id)
-            ]
-            
-            courses.append(courseDict)
-            enrollClasses(course: courseDict)
+            if courseName != "Independent Study" {
+                let details = parts[1].trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "\t")
+                
+                print(details)
+                
+                let daysAndTime = details[0].split(separator: " ")
+                let buildingRoom = details[1]
+                
+                let days = daysAndTime[0]
+                let times = daysAndTime[1]
+                
+                let classIdentifier = String(courseName + days + times + buildingRoom)
+                let id = classIdentifier.replacingOccurrences(of: "/", with: "")
+                
+                let courseDict: [String : String] = [
+                    "name": String(courseName),
+                    "days": String(days),
+                    "times": String(times),
+                    "building_room": String(buildingRoom),
+                    "class-id": String(id)
+                ]
+                
+                courses.append(courseDict)
+                enrollClasses(course: courseDict)
+            }
         }
         
         print(courses)

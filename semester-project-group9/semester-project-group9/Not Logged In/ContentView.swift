@@ -15,8 +15,6 @@ struct ContentView: View {
     @State private var validInput: Bool = true // change this to false when input validation is implemented
     @State private var presentRegistration: Bool = false
     @State private var presentLogin: Bool = false
-    @AppStorage("uid") var userID: String = ""
-    @AppStorage("email") var userEmail: String = ""
     @State private var showingAlert = false
     @State private var alertMessage = "Please use your @wustl.edu email to register."
 
@@ -73,10 +71,7 @@ struct ContentView: View {
 
 
                 Button {
-                    if validInput {
-                        presentLogin = true
-                        login()
-                    }
+                    login()
                 } label : {
                     Text("Login")
                 }
@@ -113,12 +108,11 @@ struct ContentView: View {
                     showingAlert = true
                 } else if let result = result {
                     print(result.user.uid)
-                    userID = result.user.uid
-                    userEmail = email
+                    UserDefaults.standard.set(result.user.uid, forKey: "uid")
+                    UserDefaults.standard.set(email, forKey: "email")
                     // Proceed with navigation only after successful registration
                     DispatchQueue.main.async {
                         presentRegistration = true
-                        
                     }
                     
                 }
@@ -141,9 +135,14 @@ struct ContentView: View {
     func login() {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
-                print(error!.localizedDescription)
-            } else {
-                print("logged in")
+                alertMessage = error!.localizedDescription
+                showingAlert = true
+            } else if let result = result {
+                UserDefaults.standard.set(result.user.uid, forKey: "uid")
+                UserDefaults.standard.set(email, forKey: "email")
+                DispatchQueue.main.async {
+                    presentLogin = true
+                }
             }
         }
         if email.isEmpty{

@@ -29,18 +29,18 @@ struct LoggedInView: View {
                 .toolbar(.hidden)
         case .loaded(let courseList):
             VStack {
-                if showContentView {
-                    ContentView()
-                }
                 Text("Classes")
                     .font(.largeTitle) // Makes the font larger and more prominent
                     .fontWeight(.bold) // Makes the text bold
                     .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
-                     // Optionally, add vertical padding for spacing
-                    .padding(.vertical, 10)
-                List {
+                // Optionally, add vertical padding for spacing
+                    .padding()
+                
+                Spacer()
+                
+                ScrollView {
                     ForEach(courseList) { course in
                         NavigationLink {
                             ClassView(currentClass: course)
@@ -54,17 +54,28 @@ struct LoggedInView: View {
                                 Text(course.building_room)
                             }
                         }
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
+                        .foregroundColor(.white)
+                        .frame(width: UIScreen.main.bounds.width - 20)
+                        .cornerRadius(12)
+
                     }
                 }
+                                
+                Spacer()
+                
                 Button {
                     signOut()
-                    self.showContentView = true
                 } label: {
                     Text("Sign out")
                         .padding()
                         .background(Color.accentColor)
                         .foregroundColor(.white)
                         .cornerRadius(12)
+                }
+                .navigationDestination(isPresented: $showContentView) {
+                    ContentView()
                 }
             }
             .toolbar(.hidden)
@@ -75,6 +86,12 @@ struct LoggedInView: View {
     private func signOut() {
         do  {
             try Auth.auth().signOut()
+            UserDefaults.standard.removeObject(forKey: "uid")
+            UserDefaults.standard.removeObject(forKey: "email")
+            DispatchQueue.main.async {
+                showContentView = true
+            }
+
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }

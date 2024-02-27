@@ -22,10 +22,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct semester_project_group9App: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @AppStorage("uid") var userID: String = ""
+    var userID = UserDefaults.standard.string(forKey: "uid")
+    var email = UserDefaults.standard.string(forKey: "email")
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if userID != nil && email != nil {
+                LoggedInView()
+            } else {
+                ContentView()
+            }
         }
+        
     }
 }

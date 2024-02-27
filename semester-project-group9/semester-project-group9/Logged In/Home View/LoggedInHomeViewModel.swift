@@ -20,15 +20,14 @@ class LoggedInHomeViewModel: ObservableObject {
     }
     
     @Published private(set) var state = State.idle
-    @AppStorage("uid") var userID: String = ""
-    @AppStorage("email") var userEmail: String = ""
-
+    var userID = UserDefaults.standard.string(forKey: "uid")
+    var userEmail = UserDefaults.standard.string(forKey: "email")
         
     func fetchClasses() {
         state = .loading
         
         var coursesList: [Class] = []
-        let docRef = Firestore.firestore().collection("classes").document(userEmail)
+        let docRef = Firestore.firestore().collection("classes").document(userEmail!)
         
         docRef.getDocument(completion: { doc, error in
             if let error = error {
@@ -36,7 +35,7 @@ class LoggedInHomeViewModel: ObservableObject {
             }
             if let doc = doc {
                 let decoder = JSONDecoder()
-                if let data = try? JSONSerialization.data(withJSONObject: doc.data()![self.userID]!) {
+                if let data = try? JSONSerialization.data(withJSONObject: doc.data()![self.userID!]!) {
                     coursesList = try! decoder.decode([Class].self, from: data)
                 }
 //                let classes = doc.data()![self.userID]! as! [Any]

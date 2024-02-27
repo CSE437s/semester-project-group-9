@@ -25,18 +25,35 @@ struct ContentView: View {
         NavigationStack {
             VStack {
                 Spacer()
+                                
+                Text("WashU PeerLink")
+                    .font(.largeTitle) // Makes the font larger and more prominent
+                    .fontWeight(.bold) // Makes the text bold
+                    .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
+                    .frame(width: 350)
+                    .padding()
+                
+                Spacer()
+                
                 Text("Welcome! Sign up or log in using your @wustl.edu email below:")
                     .padding()
                     .frame(width: 350)
                 
                 TextField("WUSTL Email", text: $email)
-                    .frame(width: 350)
+                    .frame(width: 300, height: 10)
                     .padding()
-                
-                // TODO: Input validation (check if empty)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(.gray, lineWidth: 1)
+                    )
+
                 SecureField("Password", text: $password)
-                    .frame(width: 350)
+                    .frame(width: 300, height: 10)
                     .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(.gray, lineWidth: 1)
+                    )
                 
                 Spacer()
                 
@@ -47,7 +64,7 @@ struct ContentView: View {
                     Text("Register")
                 }
                 .padding()
-                .background(.gray)
+                .background(Color.accentColor)
                 .cornerRadius(12)
                 .foregroundColor(.white)
                 .navigationDestination(isPresented: $presentRegistration) {
@@ -68,7 +85,7 @@ struct ContentView: View {
                         LoggedInView()
                     }
                     .padding()
-                    .background(.gray)
+                    .background(Color.accentColor)
                     .cornerRadius(12)
                     .foregroundColor(.white)
                 Spacer()
@@ -76,9 +93,10 @@ struct ContentView: View {
                 // TODO: Implement input validation-- email/password not empty, email is valid (contains @wustl.edu)
                 
             }
+            
         }
         .toolbar(.hidden)
-        .alert("Invalid Email", isPresented: $showingAlert) {
+        .alert("Invalid Input", isPresented: $showingAlert) {
             Button("OK", role: .cancel) { }
         }
         message: {
@@ -109,6 +127,15 @@ struct ContentView: View {
             alertMessage = "Please use your @wustl.edu email to register."
             showingAlert = true
         }
+        
+        if email.isEmpty{
+            alertMessage = "Please enter an email."
+            showingAlert = true
+        }
+        if password.isEmpty{
+            alertMessage = "Please enter a password."
+            showingAlert = true
+        }
     }
 
     func login() {
@@ -118,6 +145,15 @@ struct ContentView: View {
             } else {
                 print("logged in")
             }
+        }
+        if email.isEmpty{
+            alertMessage = "Please enter an email."
+            showingAlert = true
+        }
+        
+        if password.isEmpty{
+            alertMessage = "Please enter a password."
+            showingAlert = true
         }
     }
     

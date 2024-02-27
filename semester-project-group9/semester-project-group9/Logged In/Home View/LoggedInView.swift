@@ -11,6 +11,7 @@ import FirebaseAuth
 
 struct LoggedInView: View {
     @StateObject var viewModel: LoggedInHomeViewModel = LoggedInHomeViewModel()
+    @State var showContentView: Bool = false
     
     var body: some View {
         switch viewModel.state {
@@ -28,6 +29,9 @@ struct LoggedInView: View {
                 .toolbar(.hidden)
         case .loaded(let courseList):
             VStack {
+                if showContentView {
+                    ContentView()
+                }
                 Text("Classes")
                     .font(.largeTitle) // Makes the font larger and more prominent
                     .fontWeight(.bold) // Makes the text bold
@@ -54,10 +58,11 @@ struct LoggedInView: View {
                 }
                 Button {
                     signOut()
+                    self.showContentView = true
                 } label: {
                     Text("Sign out")
                         .padding()
-                        .background(.gray)
+                        .background(Color.accentColor)
                         .foregroundColor(.white)
                         .cornerRadius(12)
                 }

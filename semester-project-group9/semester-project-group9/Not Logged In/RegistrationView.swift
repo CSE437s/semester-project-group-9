@@ -22,6 +22,9 @@ struct RegistrationView: View {
     @AppStorage("uid") var userID: String = ""
     @AppStorage("email") var userEmail: String = ""
     
+    @State private var showingAlert = false
+    @State private var alertMessage = ""
+    
     
     var body: some View {
         
@@ -64,7 +67,7 @@ struct RegistrationView: View {
                 TutorialView()
             }
             .padding()
-            .background(.gray)
+            .background(Color.accentColor)
             .cornerRadius(12)
             .foregroundColor(.white)
             
@@ -73,18 +76,37 @@ struct RegistrationView: View {
             
         }
         .toolbar(.hidden)
+        .alert("Invalid Input", isPresented: $showingAlert) {
+            Button("OK", role: .cancel) { }
+        }
+        message: {
+            Text(alertMessage)
+        }
     }
     
     private func storeUserInformation() {
-        let userData = ["email" : userEmail, "uid" : userID, "firstname" : firstName, "lastname" : lastName, "firstmajor" : firstMajor, "secondmajor" : secondMajor, "graduationyear" : graduationYear]
-        
-        Firestore.firestore().collection("users").document(userEmail).setData(userData as [String : Any]) { err in
-            if let err = err {
-                print(err)
-                return
+        if !firstName.isEmpty && !lastName.isEmpty && !graduationYear.isEmpty && !firstMajor.isEmpty {
+            if Int(graduationYear)! <= 2030 && Int(graduationYear)! >= 2024 {
+                let userData = ["email" : userEmail, "uid" : userID, "firstname" : firstName, "lastname" : lastName, "firstmajor" : firstMajor, "secondmajor" : secondMajor, "graduationyear" : graduationYear]
+                
+                Firestore.firestore().collection("users").document(userEmail).setData(userData as [String : Any]) { err in
+                    if let err = err {
+                        print(err)
+                        return
+                    }
+                    print("success")
+                }
             }
-            print("success")
+            else {
+                alertMessage = "Please enter a valid graduation year."
+                showingAlert = true
+            }
         }
+        else {
+            alertMessage = "Please enter all fields."
+            showingAlert = true
+        }
+        
     }
     
 }

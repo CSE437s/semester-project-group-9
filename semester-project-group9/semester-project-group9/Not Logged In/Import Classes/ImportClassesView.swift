@@ -45,7 +45,7 @@ struct ImportClassesView: View {
             } label: {
                 Text("Import classes!")
                     .padding()
-                    .background(.gray)
+                    .background(Color.accentColor)
                     .foregroundColor(.white)
                     .cornerRadius(12)
             }

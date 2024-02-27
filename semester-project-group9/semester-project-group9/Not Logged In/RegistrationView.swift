@@ -57,7 +57,7 @@ struct RegistrationView: View {
                 if validInput {
                     // create user profile data and upload to database
                     storeUserInformation()
-                    presentImport = true
+//                    presentImport = true
                 }
             } label : {
                 Text("Proceed to Class Import")
@@ -95,6 +95,7 @@ struct RegistrationView: View {
                         return
                     }
                     print("success")
+                    presentImport = true
                 }
             }
             else {

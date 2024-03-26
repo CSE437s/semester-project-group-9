@@ -16,18 +16,45 @@ struct ChannelListView: View {
     }
     
     var body: some View {
-        NavigationView {
-            List(viewModel.chatrooms) { channel in
-                NavigationLink(destination: ChatView(channel: channel)) {
-                    HStack {
-                        Text(channel.title)
-                        Spacer()
-                    }
+        
+        NavigationStack {
+            VStack {
+                Text("BearChat Channels")
+                    .font(.largeTitle) // Makes the font larger and more prominent
+                    .fontWeight(.bold) // Makes the text bold
+                    .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
+                // Optionally, add vertical padding for spacing
+                    .padding()
+                
+                Spacer()
+                
+                ScrollView {
+                    ForEach(viewModel.chatrooms) { channel in
+                        NavigationLink {
+                            ChatView(channel: channel)
+                        } label: {
+                            VStack {
+                                Text(channel.title)
+                            }
+                            .frame(width: UIScreen.main.bounds.width - 50)
+                        }
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
+                        .foregroundColor(.white)
+    //                        .frame(width: UIScreen.main.bounds.width - 20)
+                        .cornerRadius(12)
 
+                    }
                 }
+                                
             }
-            .navigationTitle("BearChat")
+            .toolbar(.hidden)
+            .padding(.leading, 0)
+
         }
+        
     }
 }
 

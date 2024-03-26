@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State private var currentUser: User
     @State var alertMessage = ""
     @State var showingAlert = false
+    @State var showContentView = false
     
     init(currentUser: User) {
         self.viewModel = ProfileViewModel(currentUser: currentUser)
@@ -36,24 +37,63 @@ struct ProfileView: View {
                 .toolbar(.hidden)
         case .loaded(let user):
             VStack {
-                Text(user.firstName + " " + user.lastName)
-                Text("Graduation Year: " + user.graduationYear)
-                Text("First Major: " + user.firstMajor)
-                if user.secondMajor != "" {
-                    Text("Second Major: " + user.secondMajor)
-                }
-                Button {
-                    createDM(user: user)
-                    alertMessage = "DM with \(user.firstName) \(user.lastName) created. Find it in your BearChat channel list!"
-                    showingAlert = true
-                } label: {
-                    Text("Direct Message " + user.firstName + " " + user.lastName)
-                }
-                .alert("Direct Message Created", isPresented: $showingAlert) {
-                    Button("OK", role: .cancel) { }
-                }
-                message: {
-                    Text(alertMessage)
+                VStack {
+                    Rectangle()
+                        .foregroundColor(Color(uiColor: .systemGreen))
+                        .edgesIgnoringSafeArea(.top)
+                        .frame(height: 100)
+                    VStack(spacing: 15) {
+                                VStack(spacing: 5) {
+                                    Text("\(user.firstName) \(user.lastName)")
+                                        .bold()
+                                        .font(.title)
+                                    Text("\(user.graduationYear)")
+                                        .font(.body)
+                                        .foregroundColor(.secondary)
+                                    Text("First Major: \(user.firstMajor)")
+                                        .font(.body)
+                                        .foregroundColor(.secondary)
+                                    if user.secondMajor != "" {
+                                        Text("Second Major: \(user.secondMajor)")
+                                            .font(.body)
+                                            .foregroundColor(.secondary)
+                                    }
+
+                                }.padding()
+                        
+                        if (UserDefaults.standard.string(forKey: "email") != user.email) {
+                            Button {
+                                createDM(user: user)
+                                alertMessage = "DM with \(user.firstName) \(user.lastName) created. Find it in your BearChat channel list!"
+                                showingAlert = true
+                            } label: {
+                                Text("Direct Message " + user.firstName + " " + user.lastName)
+                            }
+                            .alert("Direct Message Created", isPresented: $showingAlert) {
+                                Button("OK", role: .cancel) { }
+                            }
+                            message: {
+                                Text(alertMessage)
+                            }
+                        } else {
+                            
+                            Button {
+                                signOut()
+                            } label: {
+                                Text("Sign out")
+                                    .padding()
+                                    .background(Color.accentColor)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(12)
+                            }
+                            .navigationDestination(isPresented: $showContentView) {
+                                ContentView()
+                            }
+
+                        }
+                                
+                                Spacer()
+                        }
                 }
             }
         }
@@ -70,6 +110,22 @@ struct ProfileView: View {
             }
         }
     }
+    
+    func signOut() {
+        do  {
+            try Auth.auth().signOut()
+            UserDefaults.standard.removeObject(forKey: "uid")
+            UserDefaults.standard.removeObject(forKey: "email")
+            UserDefaults.standard.removeObject(forKey: "currentUser")
+            DispatchQueue.main.async {
+                showContentView = true
+            }
+
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+    }
+
 }
 
 //struct ProfileView_Previews: PreviewProvider {

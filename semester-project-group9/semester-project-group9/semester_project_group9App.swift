@@ -29,7 +29,9 @@ struct semester_project_group9App: App {
     var body: some Scene {
         WindowGroup {
             if userID != nil && email != nil {
-                MainView()
+                NavigationStack {
+                    MainView()
+                }
             } else {
                 ContentView()
             }

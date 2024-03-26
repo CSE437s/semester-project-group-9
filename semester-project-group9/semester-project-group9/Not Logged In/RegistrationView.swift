@@ -166,6 +166,15 @@ struct RegistrationView: View {
                         return
                     }
                     print("success")
+                    let user = User(firstName: firstName, lastName: lastName, email: userEmail, firstMajor: firstMajor, secondMajor: secondMajor, graduationYear: graduationYear)
+                    do {
+                        let encoder = JSONEncoder()
+                        
+                        let data = try encoder.encode(user)
+                        UserDefaults.standard.set(data, forKey: "currentUser")
+                    } catch {
+                        print("unable to encode: \(error)")
+                    }
                     presentImport = true
                 }
             }

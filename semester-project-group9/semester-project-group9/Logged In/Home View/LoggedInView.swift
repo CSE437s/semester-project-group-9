@@ -64,40 +64,12 @@ struct LoggedInView: View {
                     }
                 }
                                 
-                Spacer()
-                
-                Button {
-                    signOut()
-                } label: {
-                    Text("Sign out")
-                        .padding()
-                        .background(Color.accentColor)
-                        .foregroundColor(.white)
-                        .cornerRadius(12)
-                }
-                .navigationDestination(isPresented: $showContentView) {
-                    ContentView()
-                }
             }
             .toolbar(.hidden)
             .padding(.leading, 0)
         }
     }
-    
-    private func signOut() {
-        do  {
-            try Auth.auth().signOut()
-            UserDefaults.standard.removeObject(forKey: "uid")
-            UserDefaults.standard.removeObject(forKey: "email")
-            DispatchQueue.main.async {
-                showContentView = true
-            }
-
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
-        }
-    }
-    
+        
 }
 
 struct LoggedInView_Previews: PreviewProvider {

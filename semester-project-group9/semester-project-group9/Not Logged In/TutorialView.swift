@@ -6,61 +6,61 @@
 //
 
 import SwiftUI
+import ConcentricOnboarding
+
+struct PageData {
+    let title: String
+    let header: String
+    let content: String
+    let color: Color
+    let textColor: Color
+}
+
+struct TutorialData {
+    static let pages: [PageData] = [
+        PageData(
+            title: "WebSTAC Class Import",
+            header: "Step 1",
+            content: "Log into WebSTAC and navigate to your class schedule.",
+            color: Color(hex: "F38181"),
+            textColor: Color(hex: "FFFFFF")),
+        PageData(
+            title: "WebSTAC Class Import",
+            header: "Step 2",
+            content: "Select all text starting from the name of your first class to the room number of your last class, copy and paste it into the text field and hit 'Submit'.",
+            color: Color(hex: "FCE38A"),
+            textColor: Color(hex: "4A4A4A")),
+        PageData(
+            title: "import",
+            header: "Step 3",
+            content: "Select all text starting from the name of your first class to the room number of your last class, copy and paste it into the text field and hit 'Submit'.",
+            color: Color(hex: "FCE38A"),
+            textColor: Color(hex: "4A4A4A"))
+            ]
+}
 
 struct TutorialView: View {
     var body: some View {
-        TabView {
+        return ConcentricOnboardingView(pageContents: TutorialData.pages.map {
+            (PageView(page: $0), $0.color)
+        })
+        .navigationBarBackButtonHidden(true)
             
-            //log into webstac and navigate to class schedule
-            VStack {
-                Text("Log into WebSTAC and navigate to your Class Schedule")
-                    .multilineTextAlignment(.center)
-                    .padding()
-                HStack {
-                    
-                            Image(systemName: "arrow.right") // SF Symbol for left arrow
-                                .font(.headline) // Customize the icon size as needed
-                                .foregroundColor(.primary) // Customize the icon color as needed
-                            Text("Swipe to continue")
-                                .font(.subheadline) // Customize the font as needed
-                                .foregroundColor(.secondary) // Customize the color as needed
-                            
-                            
-                        }
-                        .padding() // Add padding for better spacing
-            }
-            
-            //select all text and paste into box
-            
-            VStack {
-                Text("Select all text starting from the name of your first class to the room number of your last class, copy and paste it into the text field and hit 'Submit'")
-                    .multilineTextAlignment(.center)
-                    .padding()
-                
-                Image(systemName: "arrow.right") // SF Symbol for left arrow
-                    .font(.headline) // Customize the icon size as needed
-                    .foregroundColor(.primary) // Customize the icon color as needed
-                
-                Text("Swipe to continue")
-                    .font(.subheadline) // Customize the font as needed
-                    .foregroundColor(.secondary) // Customize the color as needed
-                    
-                
-                
-            }
-            .padding() // Add padding for better spacing
-                
-            
-            
-            
-            //import view
-            ImportClassesView()
-            
-            
-        }
-        .tabViewStyle(.page)
-        .toolbar(.hidden)
+    }
+}
 
+/// Color converter from hex string to SwiftUI's Color
+extension Color {
+    init(hex: String) {
+        let scanner = Scanner(string: hex)
+        var rgbValue: UInt64 = 0
+        scanner.scanHexInt64(&rgbValue)
+        
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+        
+        self.init(red: Double(r) / 0xff, green: Double(g) / 0xff, blue: Double(b) / 0xff)
     }
 }
 

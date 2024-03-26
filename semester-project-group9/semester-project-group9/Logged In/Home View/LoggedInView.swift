@@ -53,11 +53,12 @@ struct LoggedInView: View {
                                 }
                                 Text(course.building_room)
                             }
+                            .frame(width: UIScreen.main.bounds.width - 50)
                         }
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
                         .foregroundColor(.white)
-                        .frame(width: UIScreen.main.bounds.width - 20)
+//                        .frame(width: UIScreen.main.bounds.width - 20)
                         .cornerRadius(12)
 
                     }

@@ -16,7 +16,7 @@ struct RegistrationView: View {
     @State private var lastName: String = ""
     @State private var firstMajor: String = ""
     @State private var secondMajor: String = ""
-    @State private var graduationYear: String = ""
+    @State private var graduationYear: String = "2024"
     @State private var validInput: Bool = true  // change this to false when input validation is implemented
     @State private var presentImport: Bool = false
     @AppStorage("uid") var userID: String = ""
@@ -25,6 +25,7 @@ struct RegistrationView: View {
     @State private var showingAlert = false
     @State private var alertMessage = ""
     
+    let years = ["2024", "2025", "2026", "2027", "2028"]
     
     var body: some View {
         
@@ -69,13 +70,22 @@ struct RegistrationView: View {
                 Text("Graduation year:")
                     .padding(.leading)
                     .font(.caption)
-                TextField("Graduation Year", text: $graduationYear)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
-                            .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
-                    )
-                    .padding()
+//                TextField("Graduation Year", text: $graduationYear)
+//                    .padding()
+//                    .overlay(
+//                        RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
+//                            .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
+//                    )
+//                    .padding()
+                
+                Picker("Graduation Year", selection: $graduationYear){
+                    ForEach(years, id: \.self) {
+                        Text($0)
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                }
+                .padding()
+                
             }
             Text("Major:")
                 .padding(.leading)

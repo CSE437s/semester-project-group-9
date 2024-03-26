@@ -13,11 +13,22 @@ struct ImportClassesView: View {
     @State private var presentHome: Bool = false
     @State private var validInput: Bool = true // TODO: change to false when input validation is implemented
     @ObservedObject var viewModel: ImportViewModel = ImportViewModel()
+    let webView = WebView()
+    let urlString = "https://acadinfo.wustl.edu/m/"
     
     var body: some View {
         
         VStack {
-            Text("Paste WebSTAC output below:")
+            
+//            webView
+//                .onAppear() {
+//                    webView.loadURL(urlString: urlString)
+//                }
+            Text("Paste WebSTAC output starting from the name of your first class to the room number of your last class, and below:")
+                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .foregroundColor(.white)
+                .frame(width: 350)
+                .multilineTextAlignment(.center)
                 .padding()
             
             ZStack(alignment: .topLeading) {

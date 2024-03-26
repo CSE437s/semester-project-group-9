@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import Firebase
 
 struct ContentView: View {
     
@@ -38,6 +39,7 @@ struct ContentView: View {
                     .frame(width: 350)
                 
                 TextField("WUSTL Email", text: $email)
+                    .textInputAutocapitalization(.never)
                     .frame(width: 300, height: 10)
                     .padding()
                     .overlay(
@@ -160,6 +162,34 @@ struct ContentView: View {
             } else if let result = result {
                 UserDefaults.standard.set(result.user.uid, forKey: "uid")
                 UserDefaults.standard.set(email, forKey: "email")
+                
+                let docRef = Firestore.firestore().collection("users").whereField("email", isEqualTo: email)
+                
+                docRef.getDocuments { (result, err) in
+                    if let err = err {
+                        print(err.localizedDescription)
+                    } else {
+                        let document = result!.documents.first
+                        let dataDescription = document!.data()
+                        let firstName = dataDescription["firstname"] as? String ?? ""
+                        let lastName = dataDescription["lastname"] as? String ?? ""
+                        let email = dataDescription["email"] as? String ?? ""
+                        let firstMajor = dataDescription["firstmajor"] as? String ?? ""
+                        let secondMajor = dataDescription["secondmajor"] as? String ?? ""
+                        let gradYear = dataDescription["graduationyear"] as? String ?? ""
+                        let user = User(firstName: firstName, lastName: lastName, email: email, firstMajor: firstMajor, secondMajor: secondMajor, graduationYear: gradYear)
+                        do {
+                            let encoder = JSONEncoder()
+                            
+                            let data = try encoder.encode(user)
+                            UserDefaults.standard.set(data, forKey: "currentUser")
+                        } catch {
+                            print("unable to encode: \(error)")
+                        }
+                        
+                    }
+                }
+                
                 DispatchQueue.main.async {
                     presentLogin = true
                 }

@@ -37,23 +37,39 @@ struct ProfileView: View {
         case .loaded(let user):
             VStack {
                 Text(user.firstName + " " + user.lastName)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .font(.largeTitle)
+                
                 Text("Graduation Year: " + user.graduationYear)
-                Text("First Major: " + user.firstMajor)
+                    .italic()
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding()
+                    .font(.title3)
+                
+                Text("Majoring in " + user.firstMajor)
                 if user.secondMajor != "" {
                     Text("Second Major: " + user.secondMajor)
                 }
-                Button {
-                    createDM(user: user)
-                    alertMessage = "DM with \(user.firstName) \(user.lastName) created. Find it in your BearChat channel list!"
-                    showingAlert = true
-                } label: {
-                    Text("Direct Message " + user.firstName + " " + user.lastName)
-                }
-                .alert("Direct Message Created", isPresented: $showingAlert) {
-                    Button("OK", role: .cancel) { }
-                }
+                
+                HStack {
+                    Image(systemName: "message")
+                        .resizable() // Allows you to resize the image
+                        .scaledToFit() // Ensures the image scales properly within its frame
+                        .frame(width: 20, height: 20) // Adjust the size of the icon as needed
+                    Button {
+                        createDM(user: user)
+                        alertMessage = "DM with \(user.firstName) \(user.lastName) created. Find it in your BearChat channel list!"
+                        showingAlert = true
+                    } label: {
+                        Text("Direct Message " + user.firstName + " " + user.lastName)
+                    }
+                    .alert("Direct Message Created", isPresented: $showingAlert) {
+                        Button("OK", role: .cancel) { }
+                    }
                 message: {
                     Text(alertMessage)
+                }
                 }
             }
         }
@@ -72,8 +88,13 @@ struct ProfileView: View {
     }
 }
 
-//struct ProfileView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ProfileView()
-//    }
-//}
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        ProfileView(currentUser: User(firstName: "Jane",
+                                      lastName: "Doe",
+                                      email: "2024",
+                                      firstMajor: "Computer Science",
+                                      secondMajor: "Mathematics",
+                                      graduationYear: "jane.doe@example.com"))
+    }
+}

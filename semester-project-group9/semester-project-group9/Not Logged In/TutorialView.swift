@@ -18,7 +18,7 @@ struct TutorialView: View {
                     .padding()
                 HStack {
                     
-                            Image(systemName: "arrow.right") // SF Symbol for left arrow
+                            Image(systemName: "arrow.left") // SF Symbol for left arrow
                                 .font(.headline) // Customize the icon size as needed
                                 .foregroundColor(.primary) // Customize the icon color as needed
                             Text("Swipe to continue")
@@ -37,7 +37,7 @@ struct TutorialView: View {
                     .multilineTextAlignment(.center)
                     .padding()
                 
-                Image(systemName: "arrow.right") // SF Symbol for left arrow
+                Image(systemName: "arrow.left") // SF Symbol for left arrow
                     .font(.headline) // Customize the icon size as needed
                     .foregroundColor(.primary) // Customize the icon color as needed
                 

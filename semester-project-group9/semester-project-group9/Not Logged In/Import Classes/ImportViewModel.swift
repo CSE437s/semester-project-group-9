@@ -81,8 +81,36 @@ class ImportViewModel: ObservableObject {
                     return
                 }
                 print("success enrolling")
+                self.joinClassChannel(channelId: course["class-id"]!, course: course["name"]!)
             }
         }
+    }
+    
+    func joinClassChannel(channelId: String, course: String) {
+        
+        // try and add yourself to the users array
+        // if it doesnt work, invoke createChannel
+        let db = Firestore.firestore()
+        
+        db.collection("channels").whereField("joinCode", isEqualTo: channelId).getDocuments() { (snapshot, error) in
+            if let error = error {
+                print("error: \(error)")
+            } else {
+                
+                if snapshot!.documents.isEmpty {
+                    let model = ChannelsViewModel()
+                    model.createChannel(title: course, roomId: channelId)
+                } else {
+                    for document in snapshot!.documents {
+                        db.collection("channels").document(document.documentID).updateData(["users" : FieldValue.arrayUnion([UserDefaults.standard.string(forKey: "email")!])])
+                    }
+
+                }
+            }
+        }
+        
+                
+        
     }
     
     

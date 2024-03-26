@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ProfileView: View {
     
     @ObservedObject var viewModel: ProfileViewModel
     @State private var currentUser: User
+    @State var alertMessage = ""
+    @State var showingAlert = false
     
     init(currentUser: User) {
         self.viewModel = ProfileViewModel(currentUser: currentUser)
@@ -40,21 +43,32 @@ struct ProfileView: View {
                     Text("Second Major: " + user.secondMajor)
                 }
                 Button {
-                    mailto(user.email)
+                    createDM(user: user)
+                    alertMessage = "DM with \(user.firstName) \(user.lastName) created. Find it in your BearChat channel list!"
+                    showingAlert = true
                 } label: {
-                    Text("Email " + user.firstName + " " + user.lastName)
+                    Text("Direct Message " + user.firstName + " " + user.lastName)
+                }
+                .alert("Direct Message Created", isPresented: $showingAlert) {
+                    Button("OK", role: .cancel) { }
+                }
+                message: {
+                    Text(alertMessage)
                 }
             }
         }
     }
-    
-    func mailto(_ email: String) {
-        let mailto = "mailto:\(email)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let url = URL(string: mailto!)
-        if UIApplication.shared.canOpenURL(url!) {
-            UIApplication.shared.open(url!)
+        
+    func createDM(user: User) {
+        let db = Firestore.firestore()
+        
+        db.collection("channels").addDocument(data: ["title" : "\(user.email) & \(UserDefaults.standard.string(forKey: "email")!)", "joinCode": "\(user.email)\(UserDefaults.standard.string(forKey: "email")!)", "users" : [user.email, UserDefaults.standard.string(forKey: "email")]]) { err in
+            if let err = err {
+                print("error adding document: \(err)")
+            } else {
+                print("great success")
+            }
         }
-
     }
 }
 

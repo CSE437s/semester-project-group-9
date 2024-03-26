@@ -14,6 +14,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     print("Application is starting up. ApplicationDelegate didFinishLaunchingWithOptions.")
+    let providerFactory = AppCheckDebugProviderFactory()
+    AppCheck.setAppCheckProviderFactory(providerFactory)
     FirebaseApp.configure()
     return true
   }
@@ -27,7 +29,7 @@ struct semester_project_group9App: App {
     var body: some Scene {
         WindowGroup {
             if userID != nil && email != nil {
-                LoggedInView()
+                MainView()
             } else {
                 ContentView()
             }

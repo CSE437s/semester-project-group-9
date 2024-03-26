@@ -77,7 +77,7 @@ struct ContentView: View {
                 }
                     .navigationDestination(isPresented: $presentLogin) {
                         //logged in view
-                        LoggedInView()
+                        MainView()
                     }
                     .padding()
                     .background(Color.accentColor)
@@ -101,6 +101,22 @@ struct ContentView: View {
     }
     
     func register() {
+        if email.isEmpty{
+            alertMessage = "Please enter an email."
+            showingAlert = true
+            return
+        }
+        if password.isEmpty{
+            alertMessage = "Please enter a password."
+            showingAlert = true
+            return
+        }
+        if password.count < 6 {
+            alertMessage = "Password must be more than 6 characters."
+            showingAlert = true
+            return
+        }
+
         if email.hasSuffix("@wustl.edu") {
             Auth.auth().createUser(withEmail: email, password: password) { result, error in
                 if let error = error {
@@ -122,17 +138,21 @@ struct ContentView: View {
             showingAlert = true
         }
         
-        if email.isEmpty{
-            alertMessage = "Please enter an email."
-            showingAlert = true
-        }
-        if password.isEmpty{
-            alertMessage = "Please enter a password."
-            showingAlert = true
-        }
     }
 
     func login() {
+        if email.isEmpty{
+            alertMessage = "Please enter an email."
+            showingAlert = true
+            return
+        }
+        
+        if password.isEmpty{
+            alertMessage = "Please enter a password."
+            showingAlert = true
+            return
+        }
+
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
                 alertMessage = error!.localizedDescription
@@ -144,15 +164,6 @@ struct ContentView: View {
                     presentLogin = true
                 }
             }
-        }
-        if email.isEmpty{
-            alertMessage = "Please enter an email."
-            showingAlert = true
-        }
-        
-        if password.isEmpty{
-            alertMessage = "Please enter a password."
-            showingAlert = true
         }
     }
     

@@ -15,6 +15,7 @@ struct ClassView: View {
     init(currentClass: Class) {
         self.viewModel = ClassViewModel(currentClass: currentClass)
         _currentClass = State(initialValue: currentClass)
+        viewModel.fetchChannel()
     }
     
     var body: some View {
@@ -33,6 +34,22 @@ struct ClassView: View {
                 .toolbar(.hidden)
         case .loaded(let roster):
             VStack {
+                Text(currentClass.name)
+                Text("Class Times: \(currentClass.days) \(currentClass.times)")
+                Text("Location: \(currentClass.building_room)")
+                NavigationLink {
+                    ChatView(channel: viewModel.classChannel[0])
+                } label: {
+                    VStack {
+                        Text("Class Chatroom")
+                    }
+                }
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
+                .foregroundColor(.white)
+                .frame(width: UIScreen.main.bounds.width - 20)
+                .cornerRadius(12)
+                
                 List {
                     ForEach(roster) { classmate in
                         NavigationLink {

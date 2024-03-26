@@ -19,12 +19,31 @@ class ClassViewModel: ObservableObject {
     }
     
     @Published private(set) var state = State.idle
+    @Published var classChannel = [ChatChannel]()
+    
     private var currentClass: Class
     
     init(currentClass: Class) {
         self.currentClass = currentClass
     }
     
+    func fetchChannel() {
+        let db = Firestore.firestore()
+        db.collection("channels").whereField("joinCode", isEqualTo: currentClass.classIdentifier).getDocuments{(snapshot, error) in
+            guard let documents = snapshot?.documents else {
+                print("no docs returned")
+                return
+            }
+            
+            self.classChannel = documents.map({docSnapshot -> ChatChannel in
+                let data = docSnapshot.data()
+                let docId = docSnapshot.documentID
+                let title = data["title"] as? String ?? ""
+                let joinCode = data["joinCode"] as? String ?? ""
+                return ChatChannel(id: docId, title: title, joinCode: joinCode)
+            })
+        }
+    }
     
     func fetchRoster() {
         state = .loading

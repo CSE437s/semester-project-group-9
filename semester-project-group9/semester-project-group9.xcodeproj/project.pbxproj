@@ -12,6 +12,12 @@
 		7317CDB12B7304E500974859 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7317CDB02B7304E500974859 /* Assets.xcassets */; };
 		7317CDB52B7304E500974859 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7317CDB42B7304E500974859 /* Preview Assets.xcassets */; };
 		7317CDBC2B7305BC00974859 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7317CDBB2B7305BC00974859 /* GoogleService-Info.plist */; };
+		734AE7962BB29B5300DC9ADA /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AE7952BB29B5300DC9ADA /* Message.swift */; };
+		734AE7992BB29BB600DC9ADA /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AE7982BB29BB600DC9ADA /* MessageView.swift */; };
+		734AE79B2BB29C8E00DC9ADA /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AE79A2BB29C8E00DC9ADA /* ChatView.swift */; };
+		734AE79D2BB2A38B00DC9ADA /* ChatChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AE79C2BB2A38B00DC9ADA /* ChatChannel.swift */; };
+		734AE79F2BB2A51500DC9ADA /* ChannelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AE79E2BB2A51500DC9ADA /* ChannelListView.swift */; };
+		734AE7A12BB2B36B00DC9ADA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AE7A02BB2B36B00DC9ADA /* MainView.swift */; };
 		737507B02B8BF20200E27BA2 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737507AF2B8BF20200E27BA2 /* TutorialView.swift */; };
 		7390CB1B2B8C344F008C969E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB1A2B8C344F008C969E /* RegistrationView.swift */; };
 		7390CB1D2B8C4973008C969E /* ImportClassesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB1C2B8C4973008C969E /* ImportClassesView.swift */; };
@@ -44,6 +50,12 @@
 		7317CDB42B7304E500974859 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7317CDBB2B7305BC00974859 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7317CDD22B730C8100974859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		734AE7952BB29B5300DC9ADA /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		734AE7982BB29BB600DC9ADA /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		734AE79A2BB29C8E00DC9ADA /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		734AE79C2BB2A38B00DC9ADA /* ChatChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatChannel.swift; sourceTree = "<group>"; };
+		734AE79E2BB2A51500DC9ADA /* ChannelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListView.swift; sourceTree = "<group>"; };
+		734AE7A02BB2B36B00DC9ADA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		737507AF2B8BF20200E27BA2 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		7390CB1A2B8C344F008C969E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		7390CB1C2B8C4973008C969E /* ImportClassesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportClassesView.swift; sourceTree = "<group>"; };
@@ -120,6 +132,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		734AE7972BB29BA900DC9ADA /* Messages View */ = {
+			isa = PBXGroup;
+			children = (
+				734AE7982BB29BB600DC9ADA /* MessageView.swift */,
+				734AE79E2BB2A51500DC9ADA /* ChannelListView.swift */,
+				734AE79A2BB29C8E00DC9ADA /* ChatView.swift */,
+			);
+			path = "Messages View";
+			sourceTree = "<group>";
+		};
 		7390CB242B8C695A008C969E /* Not Logged In */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +165,7 @@
 		7390CB262B8C6981008C969E /* Logged In */ = {
 			isa = PBXGroup;
 			children = (
+				734AE7972BB29BA900DC9ADA /* Messages View */,
 				7390CB342B8CA090008C969E /* Profile View */,
 				7390CB2F2B8C9355008C969E /* Class View */,
 				7390CB2E2B8C9347008C969E /* Home View */,
@@ -154,6 +177,8 @@
 			isa = PBXGroup;
 			children = (
 				7390CB292B8C6C8F008C969E /* Class.swift */,
+				734AE79C2BB2A38B00DC9ADA /* ChatChannel.swift */,
+				734AE7952BB29B5300DC9ADA /* Message.swift */,
 				7390CB2B2B8C6CC1008C969E /* User.swift */,
 			);
 			path = Classes;
@@ -163,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				7390CB202B8C55E3008C969E /* LoggedInView.swift */,
+				734AE7A02BB2B36B00DC9ADA /* MainView.swift */,
 				7390CB272B8C6C5F008C969E /* LoggedInHomeViewModel.swift */,
 			);
 			path = "Home View";
@@ -278,18 +304,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				7390CB332B8C938C008C969E /* ClassViewModel.swift in Sources */,
+				734AE7A12BB2B36B00DC9ADA /* MainView.swift in Sources */,
 				7390CB1F2B8C4D24008C969E /* FirebaseManager.swift in Sources */,
 				7317CDAF2B7304E200974859 /* ContentView.swift in Sources */,
 				7390CB212B8C55E3008C969E /* LoggedInView.swift in Sources */,
+				734AE79B2BB29C8E00DC9ADA /* ChatView.swift in Sources */,
+				734AE79D2BB2A38B00DC9ADA /* ChatChannel.swift in Sources */,
 				7317CDAD2B7304E200974859 /* semester_project_group9App.swift in Sources */,
+				734AE7992BB29BB600DC9ADA /* MessageView.swift in Sources */,
 				737507B02B8BF20200E27BA2 /* TutorialView.swift in Sources */,
 				7390CB362B8CA0A0008C969E /* ProfileViewModel.swift in Sources */,
 				7390CB3A2B8CA5C6008C969E /* ProfileView.swift in Sources */,
 				7390CB282B8C6C5F008C969E /* LoggedInHomeViewModel.swift in Sources */,
+				734AE79F2BB2A51500DC9ADA /* ChannelListView.swift in Sources */,
 				7390CB1B2B8C344F008C969E /* RegistrationView.swift in Sources */,
 				7390CB1D2B8C4973008C969E /* ImportClassesView.swift in Sources */,
 				7390CB2A2B8C6C8F008C969E /* Class.swift in Sources */,
 				7390CB232B8C57E2008C969E /* ImportViewModel.swift in Sources */,
+				734AE7962BB29B5300DC9ADA /* Message.swift in Sources */,
 				7390CB2C2B8C6CC1008C969E /* User.swift in Sources */,
 				7390CB312B8C9373008C969E /* ClassView.swift in Sources */,
 			);
@@ -416,7 +448,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"semester-project-group9/Preview Content\"";
-				DEVELOPMENT_TEAM = A952H5GSN7;
+				DEVELOPMENT_TEAM = 7MV3786NJP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -436,7 +468,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "adamschwartz.semester-project-group9";
+				PRODUCT_BUNDLE_IDENTIFIER = "colesherman.semester-project-group9";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -455,7 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"semester-project-group9/Preview Content\"";
-				DEVELOPMENT_TEAM = A952H5GSN7;
+				DEVELOPMENT_TEAM = 7MV3786NJP;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -475,7 +507,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "adamschwartz.semester-project-group9";
+				PRODUCT_BUNDLE_IDENTIFIER = "colesherman.semester-project-group9";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";

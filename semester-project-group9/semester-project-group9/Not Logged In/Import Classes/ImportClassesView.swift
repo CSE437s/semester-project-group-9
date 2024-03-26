@@ -50,7 +50,7 @@ struct ImportClassesView: View {
                     .cornerRadius(12)
             }
             .navigationDestination(isPresented: $presentHome) {
-                LoggedInView()
+                MainView()
             }
         }
     }

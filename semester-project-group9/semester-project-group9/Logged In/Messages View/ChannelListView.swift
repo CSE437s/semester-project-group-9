@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct ChannelListView: View {
+    
+    @ObservedObject var viewModel = ChannelsViewModel()
+    
+    init() {
+        viewModel.fetchData()
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List(viewModel.chatrooms) { channel in
+                NavigationLink(destination: ChatView(channel: channel)) {
+                    HStack {
+                        Text(channel.title)
+                        Spacer()
+                    }
+
+                }
+            }
+            .navigationTitle("BearChat")
+        }
     }
 }
 

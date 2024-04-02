@@ -38,13 +38,6 @@ class LoggedInHomeViewModel: ObservableObject {
                 if let data = try? JSONSerialization.data(withJSONObject: doc.data()![self.userID!]!) {
                     coursesList = try! decoder.decode([Class].self, from: data)
                 }
-//                let classes = doc.data()![self.userID]! as! [Any]
-//                for course in classes {
-//                    print(course)
-//                    if let course = course as? Class {
-//                        coursesList.append(course)
-//                    }
-//                }
                 print(coursesList)
                 self.state = .loaded(coursesList)
             }

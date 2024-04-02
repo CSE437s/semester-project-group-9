@@ -120,21 +120,11 @@ struct ContentView: View {
         }
 
         if email.hasSuffix("@wustl.edu") {
-            Auth.auth().createUser(withEmail: email, password: password) { result, error in
-                if let error = error {
-                    alertMessage = error.localizedDescription
-                    showingAlert = true
-                } else if let result = result {
-                    print(result.user.uid)
-                    UserDefaults.standard.set(result.user.uid, forKey: "uid")
-                    UserDefaults.standard.set(email, forKey: "email")
-                    // Proceed with navigation only after successful registration
-                    DispatchQueue.main.async {
-                        presentRegistration = true
-                    }
-                    
-                }
-            }
+            
+            UserDefaults.standard.set(email, forKey: "email")
+            UserDefaults.standard.set(password, forKey: "pass")
+            presentRegistration = true
+            
         } else {
             alertMessage = "Please use your @wustl.edu email to register."
             showingAlert = true

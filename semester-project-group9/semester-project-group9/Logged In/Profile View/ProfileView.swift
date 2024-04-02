@@ -16,6 +16,7 @@ struct ProfileView: View {
     @State var showingAlert = false
     @State var showContentView = false
     
+    
     init(currentUser: User) {
         self.viewModel = ProfileViewModel(currentUser: currentUser)
         _currentUser = State(initialValue: currentUser)
@@ -86,15 +87,13 @@ struct ProfileView: View {
                                     .foregroundColor(.white)
                                     .cornerRadius(12)
                             }
-                            .navigationDestination(isPresented: $showContentView) {
+                            .fullScreenCover(isPresented: $showContentView, onDismiss: nil) {
                                 ContentView()
                             }
-
                         }
                                 
                                 Spacer()
                         }
-                }
                 }
             }
         }
@@ -108,6 +107,8 @@ struct ProfileView: View {
                 print("error adding document: \(err)")
             } else {
                 print("great success")
+                
+                
             }
         }
     }
@@ -129,13 +130,8 @@ struct ProfileView: View {
 
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView(currentUser: User(firstName: "Jane",
-                                      lastName: "Doe",
-                                      email: "2024",
-                                      firstMajor: "Computer Science",
-                                      secondMajor: "Mathematics",
-                                      graduationYear: "jane.doe@example.com"))
-    }
-}
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProfileView()
+//    }
+//}

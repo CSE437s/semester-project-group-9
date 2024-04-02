@@ -19,9 +19,7 @@ struct RegistrationView: View {
     @State private var graduationYear: String = "2024"
     @State private var validInput: Bool = true  // change this to false when input validation is implemented
     @State private var presentImport: Bool = false
-    @AppStorage("uid") var userID: String = ""
     @AppStorage("email") var userEmail: String = ""
-    
     @State private var showingAlert = false
     @State private var alertMessage = ""
     
@@ -118,7 +116,7 @@ struct RegistrationView: View {
                 Button {
                     if validInput {
                         // create user profile data and upload to database
-                        storeUserInformation()
+                        register()
                         //                    presentImport = true
                     }
                 } label : {
@@ -158,7 +156,7 @@ struct RegistrationView: View {
     private func storeUserInformation() {
         if !firstName.isEmpty && !lastName.isEmpty && !graduationYear.isEmpty && !firstMajor.isEmpty {
             if Int(graduationYear)! <= 2030 && Int(graduationYear)! >= 2024 {
-                let userData = ["email" : userEmail, "uid" : userID, "firstname" : firstName, "lastname" : lastName, "firstmajor" : firstMajor, "secondmajor" : secondMajor, "graduationyear" : graduationYear]
+                let userData = ["email" : userEmail, "firstname" : firstName, "lastname" : lastName, "firstmajor" : firstMajor, "secondmajor" : secondMajor, "graduationyear" : graduationYear]
                 
                 Firestore.firestore().collection("users").document(userEmail).setData(userData as [String : Any]) { err in
                     if let err = err {
@@ -188,6 +186,26 @@ struct RegistrationView: View {
             showingAlert = true
         }
         
+    }
+    
+    private func register() {
+        let password = UserDefaults.standard.string(forKey: "pass")!
+        Auth.auth().createUser(withEmail: userEmail, password: password) { result, error in
+            if let error = error {
+                alertMessage = error.localizedDescription
+                showingAlert = true
+            } else if let result = result {
+                print(result.user.uid)
+                UserDefaults.standard.set(result.user.uid, forKey: "uid")
+                UserDefaults.standard.set(userEmail, forKey: "email")
+                // Proceed with info storage only after successful registration
+                DispatchQueue.main.async {
+                    storeUserInformation()
+                }
+                
+            }
+        }
+
     }
     
 }

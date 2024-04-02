@@ -12,7 +12,7 @@ struct ImportClassesView: View {
     @State private var classText: String = ""
     @State private var presentHome: Bool = false
     @State private var validInput: Bool = true // TODO: change to false when input validation is implemented
-    @ObservedObject var viewModel: ImportViewModel = ImportViewModel()
+    @StateObject var viewModel: ImportViewModel = ImportViewModel()
     let webView = WebView()
     let urlString = "https://acadinfo.wustl.edu/m/"
     
@@ -20,13 +20,8 @@ struct ImportClassesView: View {
         
         VStack {
             
-//            webView
-//                .onAppear() {
-//                    webView.loadURL(urlString: urlString)
-//                }
-            Text("Paste WebSTAC output starting from the name of your first class to the room number of your last class, and below:")
+            Text("Paste WebSTAC output starting from 'Class Schedule' to the room number of your last class, and below:")
                 .font(.system(size: 24, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
                 .frame(width: 350)
                 .multilineTextAlignment(.center)
                 .padding()
@@ -50,7 +45,7 @@ struct ImportClassesView: View {
             Button {
                 if validInput {
                     // import classes
-                    viewModel.postClasses(userInput: classText)
+                    viewModel.parseInput(classInput: classText)
                     presentHome = true
                 }
             } label: {
@@ -61,7 +56,7 @@ struct ImportClassesView: View {
                     .cornerRadius(12)
             }
             .navigationDestination(isPresented: $presentHome) {
-                MainView()
+                ConfirmClassesView(viewModel: viewModel)
             }
         }
     }

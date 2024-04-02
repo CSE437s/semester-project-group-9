@@ -8,11 +8,64 @@
 import SwiftUI
 
 struct ConfirmClassesView: View {
+    
+    @ObservedObject var viewModel: ImportViewModel
+    @State var presentHome = false
+        
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Are these your correct classes? If not, navigate back and re-input your course schedule")
+                .font(.largeTitle) // Makes the font larger and more prominent
+                .fontWeight(.bold) // Makes the text bold
+                .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
+            // Optionally, add vertical padding for spacing
+                .padding()
+            
+            Spacer()
+            
+            ScrollView {
+                ForEach(viewModel.classes) { course in
+                    VStack {
+                        Text(course.name)
+                        HStack {
+                            Text(course.days)
+                            Text(course.times)
+                        }
+                        Text(course.building_room)
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 50)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
+                    .foregroundColor(.white)
+//                        .frame(width: UIScreen.main.bounds.width - 20)
+                    .cornerRadius(12)
+
+                }
+            }
+            
+            Button {
+                // import classes
+                viewModel.postClasses()
+                presentHome = true
+            } label: {
+                Text("Yes, these are my classes. Import now!")
+                    .padding()
+                    .background(Color.accentColor)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+            }
+            .navigationDestination(isPresented: $presentHome) {
+                MainView()
+            }
+
+                            
+        }
+        .padding(.leading, 0)
     }
 }
 
-#Preview {
-    ConfirmClassesView()
-}
+//#Preview {
+//    ConfirmClassesView()
+//}

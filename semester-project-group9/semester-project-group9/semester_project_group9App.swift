@@ -28,7 +28,7 @@ struct semester_project_group9App: App {
     var email = UserDefaults.standard.string(forKey: "email")
     var body: some Scene {
         WindowGroup {
-            if userID != nil && email != nil {
+            if userID != nil {
                 NavigationStack {
                     MainView()
                 }

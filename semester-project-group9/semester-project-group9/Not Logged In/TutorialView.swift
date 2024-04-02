@@ -34,8 +34,8 @@ struct TutorialData {
             title: "import",
             header: "Step 3",
             content: "Select all text starting from the name of your first class to the room number of your last class, copy and paste it into the text field and hit 'Submit'.",
-            color: Color(hex: "FCE38A"),
-            textColor: Color(hex: "4A4A4A"))
+            color: Color(hex: "F38181"),
+            textColor: Color(hex: "FFFFFF"))
             ]
 }
 

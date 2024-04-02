@@ -25,7 +25,6 @@
 		73772BE82BBCB85200762603 /* ConfirmClassesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73772BE72BBCB85200762603 /* ConfirmClassesView.swift */; };
 		7390CB1B2B8C344F008C969E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB1A2B8C344F008C969E /* RegistrationView.swift */; };
 		7390CB1D2B8C4973008C969E /* ImportClassesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB1C2B8C4973008C969E /* ImportClassesView.swift */; };
-		7390CB1F2B8C4D24008C969E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB1E2B8C4D24008C969E /* FirebaseManager.swift */; };
 		7390CB212B8C55E3008C969E /* LoggedInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB202B8C55E3008C969E /* LoggedInView.swift */; };
 		7390CB232B8C57E2008C969E /* ImportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB222B8C57E2008C969E /* ImportViewModel.swift */; };
 		7390CB282B8C6C5F008C969E /* LoggedInHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB272B8C6C5F008C969E /* LoggedInHomeViewModel.swift */; };
@@ -66,7 +65,6 @@
 		73772BE72BBCB85200762603 /* ConfirmClassesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmClassesView.swift; sourceTree = "<group>"; };
 		7390CB1A2B8C344F008C969E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		7390CB1C2B8C4973008C969E /* ImportClassesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportClassesView.swift; sourceTree = "<group>"; };
-		7390CB1E2B8C4D24008C969E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		7390CB202B8C55E3008C969E /* LoggedInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInView.swift; sourceTree = "<group>"; };
 		7390CB222B8C57E2008C969E /* ImportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportViewModel.swift; sourceTree = "<group>"; };
 		7390CB272B8C6C5F008C969E /* LoggedInHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggedInHomeViewModel.swift; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 				7317CDAC2B7304E200974859 /* semester_project_group9App.swift */,
 				7390CB242B8C695A008C969E /* Not Logged In */,
 				7390CB262B8C6981008C969E /* Logged In */,
-				7390CB1E2B8C4D24008C969E /* FirebaseManager.swift */,
 				7390CB2D2B8C6CEF008C969E /* Classes */,
 				7317CDB02B7304E500974859 /* Assets.xcassets */,
 				7317CDB22B7304E500974859 /* semester_project_group9.entitlements */,
@@ -320,7 +317,6 @@
 				734AE7AD2BB376B800DC9ADA /* WebView.swift in Sources */,
 				73772BE82BBCB85200762603 /* ConfirmClassesView.swift in Sources */,
 				734AE7A12BB2B36B00DC9ADA /* MainView.swift in Sources */,
-				7390CB1F2B8C4D24008C969E /* FirebaseManager.swift in Sources */,
 				7317CDAF2B7304E200974859 /* ContentView.swift in Sources */,
 				7390CB212B8C55E3008C969E /* LoggedInView.swift in Sources */,
 				734AE79B2BB29C8E00DC9ADA /* ChatView.swift in Sources */,

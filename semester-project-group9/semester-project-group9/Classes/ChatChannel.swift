@@ -19,6 +19,8 @@ class ChannelsViewModel: ObservableObject {
     @Published var chatrooms = [ChatChannel]()
     private let db = Firestore.firestore()
     private let user = UserDefaults.standard.string(forKey: "email")
+    @Published var dms = [ChatChannel]()
+    @Published var classChannels = [ChatChannel]()
     
     func fetchData() {
         if user != nil {
@@ -35,6 +37,15 @@ class ChannelsViewModel: ObservableObject {
                     let joinCode = data["joinCode"] as? String ?? ""
                     return ChatChannel(id: docId, title: title, joinCode: joinCode)
                 })
+                
+                for chatroom in self.chatrooms {
+                    if chatroom.title.contains("@wustl.edu") {
+                        self.dms.append(chatroom)
+                    } else {
+                        self.classChannels.append(chatroom)
+                    }
+                }
+                
             })
         }
     }

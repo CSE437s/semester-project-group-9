@@ -15,8 +15,11 @@ class ImportViewModel: ObservableObject {
     
     @AppStorage("uid") var userID: String = ""
     @AppStorage("email") var userEmail: String = ""
+    @Published var classes: [Class] = []
+    var courses: [[String : Any]] = []
+
     
-    func parseInput(classInput: String) -> [[String : Any]] {
+    func parseInput(classInput: String) {
                 
         let leadingWhitespace = classInput.prefix(while: {$0.isWhitespace})
         let trimmedStr = String(classInput[leadingWhitespace.endIndex...])
@@ -24,7 +27,6 @@ class ImportViewModel: ObservableObject {
         
         print(courseBlocks)
         
-        var courses: [[String : Any]] = []
         
         for block in courseBlocks {
             let parts = block.split(separator: "Days & Time\tBld. / Room")
@@ -51,20 +53,24 @@ class ImportViewModel: ObservableObject {
                     "class-id": String(id)
                 ]
                 
+                let course = Class(classIdentifier: String(id), name: String(courseName), building_room: String(buildingRoom), days: String(days), times: String(times))
+                classes.append(course)
+                
                 courses.append(courseDict)
-                enrollClasses(course: courseDict)
             }
         }
         
         print(courses)
         
-        return courses
 
     }
-    
-    func postClasses(userInput: String) {
-        let data = parseInput(classInput: userInput)
-        Firestore.firestore().collection("classes").document(userEmail).setData(["\(userID)" : data]) { err in
+        
+    func postClasses() {
+        for course in classes {
+            enrollClasses(course: course)
+        }
+        
+        Firestore.firestore().collection("classes").document(userEmail).setData(["\(userID)" : courses]) { err in
             if let err = err {
                 print(err)
                 return
@@ -73,15 +79,15 @@ class ImportViewModel: ObservableObject {
         }
     }
     
-    func enrollClasses(course: [String : String]) {
-        if course["name"]! != "Independent Study" {
-            Firestore.firestore().collection("rosters").document(course["class-id"]!).setData(["roster": FieldValue.arrayUnion([userEmail])], merge: true) { err in
+    func enrollClasses(course: Class) {
+        if course.name != "Independent Study" {
+            Firestore.firestore().collection("rosters").document(course.classIdentifier).setData(["roster": FieldValue.arrayUnion([userEmail])], merge: true) { err in
                 if let err = err {
                     print(err)
                     return
                 }
                 print("success enrolling")
-                self.joinClassChannel(channelId: course["class-id"]!, course: course["name"]!)
+                self.joinClassChannel(channelId: course.classIdentifier, course: course.name)
             }
         }
     }

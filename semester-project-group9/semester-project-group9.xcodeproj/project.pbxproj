@@ -22,6 +22,7 @@
 		734AE7AB2BB375ED00DC9ADA /* ConcentricOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 734AE7AA2BB375ED00DC9ADA /* ConcentricOnboarding */; };
 		734AE7AD2BB376B800DC9ADA /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 734AE7AC2BB376B800DC9ADA /* WebView.swift */; };
 		737507B02B8BF20200E27BA2 /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737507AF2B8BF20200E27BA2 /* TutorialView.swift */; };
+		73772BE82BBCB85200762603 /* ConfirmClassesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73772BE72BBCB85200762603 /* ConfirmClassesView.swift */; };
 		7390CB1B2B8C344F008C969E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB1A2B8C344F008C969E /* RegistrationView.swift */; };
 		7390CB1D2B8C4973008C969E /* ImportClassesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB1C2B8C4973008C969E /* ImportClassesView.swift */; };
 		7390CB1F2B8C4D24008C969E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB1E2B8C4D24008C969E /* FirebaseManager.swift */; };
@@ -62,6 +63,7 @@
 		734AE7A72BB3754700DC9ADA /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		734AE7AC2BB376B800DC9ADA /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		737507AF2B8BF20200E27BA2 /* TutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
+		73772BE72BBCB85200762603 /* ConfirmClassesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmClassesView.swift; sourceTree = "<group>"; };
 		7390CB1A2B8C344F008C969E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		7390CB1C2B8C4973008C969E /* ImportClassesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportClassesView.swift; sourceTree = "<group>"; };
 		7390CB1E2B8C4D24008C969E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				7390CB1C2B8C4973008C969E /* ImportClassesView.swift */,
+				73772BE72BBCB85200762603 /* ConfirmClassesView.swift */,
 				7390CB222B8C57E2008C969E /* ImportViewModel.swift */,
 			);
 			path = "Import Classes";
@@ -315,6 +318,7 @@
 			files = (
 				7390CB332B8C938C008C969E /* ClassViewModel.swift in Sources */,
 				734AE7AD2BB376B800DC9ADA /* WebView.swift in Sources */,
+				73772BE82BBCB85200762603 /* ConfirmClassesView.swift in Sources */,
 				734AE7A12BB2B36B00DC9ADA /* MainView.swift in Sources */,
 				7390CB1F2B8C4D24008C969E /* FirebaseManager.swift in Sources */,
 				7317CDAF2B7304E200974859 /* ContentView.swift in Sources */,

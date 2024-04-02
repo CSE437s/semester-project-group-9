@@ -20,7 +20,10 @@ class ImportViewModel: ObservableObject {
 
     
     func parseInput(classInput: String) {
-                
+        
+        classes = []
+        courses = []
+        
         let leadingWhitespace = classInput.prefix(while: {$0.isWhitespace})
         let trimmedStr = String(classInput[leadingWhitespace.endIndex...])
         let courseBlocks = trimmedStr.split(separator: "expand\t\n")

@@ -1,8 +1,8 @@
 # Semester-Project
 
-## Team Name: <Insert Here>
-## Group #: <Insert Here>
-## Contributors: <Insert Here>
-## TA: <Insert Here>
+## Team Name: Group 9 - WashU PeerLink
+## Group #: 9
+## Contributors: Cole Sherman, Adam Schwartz, Sandhya Thomas
+## TA: Mason Geller
 
-## Instructions/Link to access: <insert here>
+## Instructions/Link to access: Swift app, requires in-person demo

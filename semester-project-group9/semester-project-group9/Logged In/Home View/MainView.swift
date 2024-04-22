@@ -139,7 +139,7 @@ struct Home: View {
     /// Custom Tab Bar
     /// With More Easy Customization
     @ViewBuilder
-    func CustomTabBar(_ tint: Color = Color(uiColor: .systemGreen), _ inactiveTint: Color = Color(uiColor: .systemGreen)) -> some View {
+    func CustomTabBar(_ tint: Color = Color(hex: "32652F"), _ inactiveTint: Color = Color(hex: "32652F")) -> some View {
         /// Moving all the Remaining Tab Item's to Bottom
         HStack(alignment: .bottom, spacing: 0) {
             ForEach(Tab.allCases, id: \.rawValue) {

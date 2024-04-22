@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import ActivityIndicatorView
 
 struct ProfileView: View {
     
@@ -25,14 +26,18 @@ struct ProfileView: View {
     var body: some View {
         switch viewModel.state {
         case .idle:
-            Text("Loading")
-                .task {
+            ActivityIndicatorView(isVisible: Binding.constant(true), type: .arcs(count: 5, lineWidth: 3))
+                 .frame(width: 50.0, height: 50.0)
+                 .foregroundColor(Color(hex: "32652F"))
+                 .task {
                     viewModel.fecthUser()
                 }
                 .toolbar(.hidden)
         case .loading:
-            Text("Loading...")
-                .task {
+            ActivityIndicatorView(isVisible: Binding.constant(true), type: .arcs(count: 5, lineWidth: 3))
+                 .frame(width: 50.0, height: 50.0)
+                 .foregroundColor(Color(hex: "32652F"))
+                 .task {
                     viewModel.fecthUser()
                 }
                 .toolbar(.hidden)
@@ -40,7 +45,7 @@ struct ProfileView: View {
             VStack {
                 VStack {
                     Rectangle()
-                        .foregroundColor(Color(uiColor: .systemGreen))
+                        .foregroundColor(Color(hex: "32652F"))
                         .edgesIgnoringSafeArea(.top)
                         .frame(height: 100)
                     VStack(spacing: 15) {
@@ -69,6 +74,13 @@ struct ProfileView: View {
                                 showingAlert = true
                             } label: {
                                 Text("Direct Message " + user.firstName + " " + user.lastName)
+                                    .foregroundColor(.white)
+                                    .bold()
+                                    .font(Font.system(size: 24))
+                                    .padding(12)
+                                    .background(Color(hex: "32652F"))
+                                    .cornerRadius(12)
+
                             }
                             .alert("Direct Message Created", isPresented: $showingAlert) {
                                 Button("OK", role: .cancel) { }
@@ -82,9 +94,11 @@ struct ProfileView: View {
                                 signOut()
                             } label: {
                                 Text("Sign out")
-                                    .padding()
-                                    .background(Color.accentColor)
                                     .foregroundColor(.white)
+                                    .bold()
+                                    .font(Font.system(size: 24))
+                                    .padding(12)
+                                    .background(Color(hex: "32652F"))
                                     .cornerRadius(12)
                             }
                             .fullScreenCover(isPresented: $showContentView, onDismiss: nil) {

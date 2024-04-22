@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ActivityIndicatorView
 
 struct ClassView: View {
     
@@ -21,14 +22,18 @@ struct ClassView: View {
     var body: some View {
         switch viewModel.state {
         case .idle:
-            Text("Loading...")
-                .task {
+            ActivityIndicatorView(isVisible: Binding.constant(true), type: .arcs(count: 5, lineWidth: 3))
+                 .frame(width: 50.0, height: 50.0)
+                 .foregroundColor(Color(hex: "32652F"))
+                 .task {
                     viewModel.fetchRoster()
                 }
                 .toolbar(.hidden)
         case .loading:
-            Text("Loading...")
-                .task {
+            ActivityIndicatorView(isVisible: Binding.constant(true), type: .arcs(count: 5, lineWidth: 3))
+                 .frame(width: 50.0, height: 50.0)
+                 .foregroundColor(Color(hex: "32652F"))
+                 .task {
                     viewModel.fetchRoster()
                 }
                 .toolbar(.hidden)

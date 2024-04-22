@@ -34,6 +34,9 @@
 		7390CB332B8C938C008C969E /* ClassViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB322B8C938C008C969E /* ClassViewModel.swift */; };
 		7390CB362B8CA0A0008C969E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB352B8CA0A0008C969E /* ProfileViewModel.swift */; };
 		7390CB3A2B8CA5C6008C969E /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7390CB392B8CA5C6008C969E /* ProfileView.swift */; };
+		73BEF6FD2BD6DB6B0046711F /* ClassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEF6FC2BD6DB6B0046711F /* ClassCard.swift */; };
+		73BEF7002BD6E4470046711F /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 73BEF6FF2BD6E4470046711F /* ActivityIndicatorView */; };
+		73BEF7022BD6F7890046711F /* ChannelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEF7012BD6F7890046711F /* ChannelCard.swift */; };
 		A80A06692B8E34E90041D48C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A80A06682B8E34E90041D48C /* FirebaseAnalytics */; };
 		A80A066B2B8E34E90041D48C /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = A80A066A2B8E34E90041D48C /* FirebaseAnalyticsOnDeviceConversion */; };
 		A80A066D2B8E34E90041D48C /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A80A066C2B8E34E90041D48C /* FirebaseAnalyticsSwift */; };
@@ -74,6 +77,8 @@
 		7390CB322B8C938C008C969E /* ClassViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassViewModel.swift; sourceTree = "<group>"; };
 		7390CB352B8CA0A0008C969E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		7390CB392B8CA5C6008C969E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		73BEF6FC2BD6DB6B0046711F /* ClassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCard.swift; sourceTree = "<group>"; };
+		73BEF7012BD6F7890046711F /* ChannelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73BEF7002BD6E4470046711F /* ActivityIndicatorView in Frameworks */,
 				A80A066D2B8E34E90041D48C /* FirebaseAnalyticsSwift in Frameworks */,
 				A80A06692B8E34E90041D48C /* FirebaseAnalytics in Frameworks */,
 				A80A066B2B8E34E90041D48C /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
@@ -143,6 +149,7 @@
 				734AE7982BB29BB600DC9ADA /* MessageView.swift */,
 				734AE79E2BB2A51500DC9ADA /* ChannelListView.swift */,
 				734AE79A2BB29C8E00DC9ADA /* ChatView.swift */,
+				73BEF7012BD6F7890046711F /* ChannelCard.swift */,
 			);
 			path = "Messages View";
 			sourceTree = "<group>";
@@ -198,6 +205,7 @@
 				7390CB202B8C55E3008C969E /* LoggedInView.swift */,
 				734AE7A02BB2B36B00DC9ADA /* MainView.swift */,
 				7390CB272B8C6C5F008C969E /* LoggedInHomeViewModel.swift */,
+				73BEF6FC2BD6DB6B0046711F /* ClassCard.swift */,
 			);
 			path = "Home View";
 			sourceTree = "<group>";
@@ -253,6 +261,7 @@
 				A80A06752B8E35CE0041D48C /* FirebaseFirestoreSwift */,
 				A80A06772B8E35FB0041D48C /* FirebaseAuth */,
 				734AE7AA2BB375ED00DC9ADA /* ConcentricOnboarding */,
+				73BEF6FF2BD6E4470046711F /* ActivityIndicatorView */,
 			);
 			productName = "semester-project-group9";
 			productReference = 7317CDA92B7304E200974859 /* semester-project-group9.app */;
@@ -285,6 +294,7 @@
 			packageReferences = (
 				A80A06672B8E34E90041D48C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				734AE7A92BB375ED00DC9ADA /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */,
+				73BEF6FE2BD6E4470046711F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 			);
 			productRefGroup = 7317CDAA2B7304E200974859 /* Products */;
 			projectDirPath = "";
@@ -323,6 +333,7 @@
 				734AE79D2BB2A38B00DC9ADA /* ChatChannel.swift in Sources */,
 				7317CDAD2B7304E200974859 /* semester_project_group9App.swift in Sources */,
 				734AE7992BB29BB600DC9ADA /* MessageView.swift in Sources */,
+				73BEF7022BD6F7890046711F /* ChannelCard.swift in Sources */,
 				737507B02B8BF20200E27BA2 /* TutorialView.swift in Sources */,
 				7390CB362B8CA0A0008C969E /* ProfileViewModel.swift in Sources */,
 				7390CB3A2B8CA5C6008C969E /* ProfileView.swift in Sources */,
@@ -331,6 +342,7 @@
 				7390CB1B2B8C344F008C969E /* RegistrationView.swift in Sources */,
 				7390CB1D2B8C4973008C969E /* ImportClassesView.swift in Sources */,
 				7390CB2A2B8C6C8F008C969E /* Class.swift in Sources */,
+				73BEF6FD2BD6DB6B0046711F /* ClassCard.swift in Sources */,
 				7390CB232B8C57E2008C969E /* ImportViewModel.swift in Sources */,
 				734AE7962BB29B5300DC9ADA /* Message.swift in Sources */,
 				734AE7A82BB3754700DC9ADA /* PageView.swift in Sources */,
@@ -565,6 +577,14 @@
 				minimumVersion = 1.0.6;
 			};
 		};
+		73BEF6FE2BD6E4470046711F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.1;
+			};
+		};
 		A80A06672B8E34E90041D48C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -580,6 +600,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 734AE7A92BB375ED00DC9ADA /* XCRemoteSwiftPackageReference "ConcentricOnboarding" */;
 			productName = ConcentricOnboarding;
+		};
+		73BEF6FF2BD6E4470046711F /* ActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 73BEF6FE2BD6E4470046711F /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
+			productName = ActivityIndicatorView;
 		};
 		A80A06682B8E34E90041D48C /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

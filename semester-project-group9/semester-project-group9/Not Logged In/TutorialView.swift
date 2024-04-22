@@ -31,21 +31,25 @@ struct TutorialData {
             color: Color(hex: "FCE38A"),
             textColor: Color(hex: "4A4A4A")),
         PageData(
-            title: "import",
+            title: "WebSTAC Class Import",
             header: "Step 3",
-            content: "Select all text starting from the name of your first class to the room number of your last class, copy and paste it into the text field and hit 'Submit'.",
-            color: Color(hex: "F38181"),
+            content: "import",
+            color: Color(hex: "4F844D"),
             textColor: Color(hex: "FFFFFF"))
             ]
 }
 
 struct TutorialView: View {
+    
+    
     var body: some View {
-        return ConcentricOnboardingView(pageContents: TutorialData.pages.map {
-            (PageView(page: $0), $0.color)
-        })
-        .navigationBarBackButtonHidden(true)
-            
+        return ZStack {
+            ConcentricOnboardingView(pageContents: TutorialData.pages.map {
+                (PageView(page: $0), $0.color)
+            })
+            .navigationBarBackButtonHidden(true)
+        }
+    
     }
 }
 

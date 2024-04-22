@@ -121,6 +121,13 @@ struct RegistrationView: View {
                     }
                 } label : {
                     Text("Proceed to Class Import")
+                        .foregroundColor(.white)
+                        .bold()
+                        .font(Font.system(size: 24))
+                        .padding(12)
+                        .background(Color(hex: "32652F"))
+                        .cornerRadius(12)
+
                 }
                 .navigationDestination(isPresented: $presentImport) {
                     // tutorial/import view

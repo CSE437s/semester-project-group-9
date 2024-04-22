@@ -18,88 +18,124 @@ struct ContentView: View {
     @State private var presentLogin: Bool = false
     @State private var showingAlert = false
     @State private var alertMessage = "Please use your @wustl.edu email to register."
-
+    
     
     var body: some View {
         NavigationStack {
-            VStack {
-                Spacer()
-                                
-                Text("WashU PeerLink")
-                    .font(.largeTitle) // Makes the font larger and more prominent
-                    .fontWeight(.bold) // Makes the text bold
-                    .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
-                    .frame(width: 350)
-                    .padding()
-                
-                Spacer()
-                
-                Text("Welcome! Sign up or log in using your @wustl.edu email below:")
-                    .padding()
-                    .frame(width: 350)
-                
-                TextField("WUSTL Email", text: $email)
-                    .textInputAutocapitalization(.never)
-                    .frame(width: 300, height: 10)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(.gray, lineWidth: 1)
-                    )
+            ZStack {
+                VStack {
+                    Spacer()
+                    
+                    Text("WashU PeerLink")
+                        .font(.largeTitle) // Makes the font larger and more prominent
+                        .fontWeight(.bold) // Makes the text bold
+                        .foregroundStyle(Color(hex: "32652F")) // Uses the primary color, adaptable to light/dark mode
+                        .frame(width: 350)
+                        .padding()
+                    
+                    Spacer()
+                    
+                    VStack {
+                        Text("Welcome! Sign up or log in using your @wustl.edu email below:")
+                            .padding()
+                            .foregroundStyle(Color(hex: "32652F"))
+                            .frame(width: 350)
+                        
+                        TextField("WUSTL Email", text: $email)
+                            .textInputAutocapitalization(.never)
+                            .frame(width: 300, height: 10)
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(.gray, lineWidth: 1)
+                            )
+                        
+                        SecureField("Password", text: $password)
+                            .frame(width: 300, height: 10)
+                            .padding()
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(.gray, lineWidth: 1)
+                            )
+                        Button {
+                            // Call register which includes validation, registration, and conditional navigation
+                            register()
+                        } label: {
+                            Text("Register!")
+                                .foregroundColor(.white)
+                                .bold()
+                                .font(Font.system(size: 24))
+                                .padding()
+                                .background(Color(hex: "32652F"))
+                                .cornerRadius(12)
+                            
+                        }
+                        .padding()
+                        .cornerRadius(12)
+                        .foregroundColor(.white)
+                        .navigationDestination(isPresented: $presentRegistration) {
+                            RegistrationView()
+                        }
+                        
+                        
+                        Button {
+                            login()
+                        } label : {
+                            Text("Login!")
+                                .foregroundColor(.white)
+                                .bold()
+                                .font(Font.system(size: 24))
+                                .padding()
+                                .background(Color(hex: "32652F"))
+                                .cornerRadius(12)
 
-                SecureField("Password", text: $password)
-                    .frame(width: 300, height: 10)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(.gray, lineWidth: 1)
-                    )
-                
-                Spacer()
-                
-                Button {
-                    // Call register which includes validation, registration, and conditional navigation
-                    register()
-                } label: {
-                    Text("Register")
-                }
-                .padding()
-                .background(Color.accentColor)
-                .cornerRadius(12)
-                .foregroundColor(.white)
-                .navigationDestination(isPresented: $presentRegistration) {
-                    RegistrationView()
-                }
+                        }
+                        .navigationDestination(isPresented: $presentLogin) {
+                            //logged in view
+                            MainView()
+                        }
+                        .padding()
+                        .cornerRadius(12)
+                        .foregroundColor(.white)
 
-
-                Button {
-                    login()
-                } label : {
-                    Text("Login")
-                }
-                    .navigationDestination(isPresented: $presentLogin) {
-                        //logged in view
-                        MainView()
                     }
                     .padding()
-                    .background(Color.accentColor)
-                    .cornerRadius(12)
-                    .foregroundColor(.white)
-                Spacer()
-                
-                // TODO: Implement input validation-- email/password not empty, email is valid (contains @wustl.edu)
-                
+                    .foregroundColor(.black)
+                    .frame(width: UIScreen.main.bounds.width * 0.95)
+                    .background(.white)
+                    .cornerRadius(10)
+                    .shadow(radius: 5)
+                    
+
+                    
+                    Spacer()
+                    
+                    
+                    
+                    Spacer()
+                    
+                    // TODO: Implement input validation-- email/password not empty, email is valid (contains @wustl.edu)
+                    
+                }
+
             }
+            .background(
+                Image("washu")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .ignoresSafeArea()
+                    .opacity(0.2)
+            )
+
             
         }
         .toolbar(.hidden)
         .alert("Invalid Input", isPresented: $showingAlert) {
             Button("OK", role: .cancel) { }
         }
-        message: {
-            Text(alertMessage)
-        }
-        
+    message: {
+        Text(alertMessage)
+    }
     }
     
     func register() {
@@ -118,7 +154,7 @@ struct ContentView: View {
             showingAlert = true
             return
         }
-
+        
         if email.hasSuffix("@wustl.edu") {
             
             UserDefaults.standard.set(email, forKey: "email")
@@ -131,7 +167,7 @@ struct ContentView: View {
         }
         
     }
-
+    
     func login() {
         if email.isEmpty{
             alertMessage = "Please enter an email."
@@ -144,7 +180,7 @@ struct ContentView: View {
             showingAlert = true
             return
         }
-
+        
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
                 alertMessage = error!.localizedDescription

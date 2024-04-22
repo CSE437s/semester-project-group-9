@@ -27,20 +27,23 @@ struct ConfirmClassesView: View {
             
             ScrollView {
                 ForEach(viewModel.classes) { course in
-                    VStack {
-                        Text(course.name)
-                        HStack {
-                            Text(course.days)
-                            Text(course.times)
-                        }
-                        Text(course.building_room)
-                    }
-                    .frame(width: UIScreen.main.bounds.width - 50)
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
-                    .foregroundColor(.white)
-//                        .frame(width: UIScreen.main.bounds.width - 20)
-                    .cornerRadius(12)
+                    
+                    ClassCard(course: course)
+                    
+//                    VStack {
+//                        Text(course.name)
+//                        HStack {
+//                            Text(course.days)
+//                            Text(course.times)
+//                        }
+//                        Text(course.building_room)
+//                    }
+//                    .frame(width: UIScreen.main.bounds.width - 50)
+//                    .padding()
+//                    .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
+//                    .foregroundColor(.white)
+////                        .frame(width: UIScreen.main.bounds.width - 20)
+//                    .cornerRadius(12)
 
                 }
             }
@@ -51,9 +54,11 @@ struct ConfirmClassesView: View {
                 presentHome = true
             } label: {
                 Text("Yes, these are my classes. Import now!")
-                    .padding()
-                    .background(Color.accentColor)
                     .foregroundColor(.white)
+                    .bold()
+                    .font(Font.system(size: 24))
+                    .padding(12)
+                    .background(Color(hex: "32652F"))
                     .cornerRadius(12)
             }
             .navigationDestination(isPresented: $presentHome) {

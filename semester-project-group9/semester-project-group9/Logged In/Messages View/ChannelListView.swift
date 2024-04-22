@@ -24,10 +24,10 @@ struct ChannelListView: View {
                     Text("BearChat Class Channels")
                         .font(.largeTitle) // Makes the font larger and more prominent
                         .fontWeight(.bold) // Makes the text bold
-                        .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
                     // Optionally, add vertical padding for spacing
+                        .foregroundStyle(Color(hex: "32652F"))
                         .padding()
                     
                     Spacer()
@@ -37,13 +37,9 @@ struct ChannelListView: View {
                             NavigationLink {
                                 ChatView(channel: channel)
                             } label: {
-                                VStack {
-                                    Text(channel.title)
-                                }
-                                .frame(width: UIScreen.main.bounds.width - 50)
+                                ChannelCard(channel: channel)
                             }
                             .padding()
-                            .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
                             .foregroundColor(.white)
         //                        .frame(width: UIScreen.main.bounds.width - 20)
                             .cornerRadius(12)
@@ -56,10 +52,10 @@ struct ChannelListView: View {
                     Text("BearChat Direct Messages")
                         .font(.largeTitle) // Makes the font larger and more prominent
                         .fontWeight(.bold) // Makes the text bold
-                        .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
                     // Optionally, add vertical padding for spacing
+                        .foregroundStyle(Color(hex: "32652F"))
                         .padding()
                     
                     Spacer()
@@ -72,13 +68,9 @@ struct ChannelListView: View {
                                 NavigationLink {
                                     ChatView(channel: channel)
                                 } label: {
-                                    VStack {
-                                        Text(channel.title)
-                                    }
-                                    .frame(width: UIScreen.main.bounds.width - 50)
+                                    ChannelCard(channel: channel)
                                 }
                                 .padding()
-                                .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
                                 .foregroundColor(.white)
                                 //                        .frame(width: UIScreen.main.bounds.width - 20)
                                 .cornerRadius(12)

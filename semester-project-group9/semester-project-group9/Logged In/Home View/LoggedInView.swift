@@ -5,6 +5,7 @@
 //  Created by Cole Sherman on 2/25/24.
 //
 
+import ActivityIndicatorView
 import SwiftUI
 import Firebase
 import FirebaseAuth
@@ -16,26 +17,29 @@ struct LoggedInView: View {
     var body: some View {
         switch viewModel.state {
         case .idle:
-            Text("Loading...")
-                .task {
+            ActivityIndicatorView(isVisible: Binding.constant(true), type: .arcs(count: 5, lineWidth: 3))
+                 .frame(width: 50.0, height: 50.0)
+                 .foregroundColor(Color(hex: "32652F"))
+                 .task {
                     viewModel.fetchClasses()
                 }
                 .toolbar(.hidden)
         case .loading:
-            Text("Loading...")
-                .task {
+            ActivityIndicatorView(isVisible: Binding.constant(true), type: .arcs(count: 5, lineWidth: 3))
+                 .frame(width: 50.0, height: 50.0)
+                 .foregroundColor(Color(hex: "32652F"))
+                 .task {
                     viewModel.fetchClasses()
                 }
                 .toolbar(.hidden)
         case .loaded(let courseList):
             VStack {
-                Text("Classes")
+                Text("Your Classes")
                     .font(.largeTitle) // Makes the font larger and more prominent
                     .fontWeight(.bold) // Makes the text bold
-                    .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
-                // Optionally, add vertical padding for spacing
+                    .foregroundStyle(Color(hex: "32652F"))
                     .padding()
                 
                 Spacer()
@@ -45,18 +49,21 @@ struct LoggedInView: View {
                         NavigationLink {
                             ClassView(currentClass: course)
                         } label: {
-                            VStack {
-                                Text(course.name)
-                                HStack {
-                                    Text(course.days)
-                                    Text(course.times)
-                                }
-                                Text(course.building_room)
-                            }
-                            .frame(width: UIScreen.main.bounds.width - 50)
+                            
+                            ClassCard(course: course)
+                            
+//                            VStack {
+//                                Text(course.name)
+//                                HStack {
+//                                    Text(course.days)
+//                                    Text(course.times)
+//                                }
+//                                Text(course.building_room)
+//                            }
+//                            .frame(width: UIScreen.main.bounds.width - 50)
                         }
                         .padding()
-                        .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
+                        .background(RoundedRectangle(cornerRadius: 12))
                         .foregroundColor(.white)
 //                        .frame(width: UIScreen.main.bounds.width - 20)
                         .cornerRadius(12)

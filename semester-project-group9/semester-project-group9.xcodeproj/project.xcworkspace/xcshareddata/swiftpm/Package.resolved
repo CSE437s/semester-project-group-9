@@ -1,5 +1,5 @@
 {
-  "originHash" : "12a631c281d32acb46f6e41a0fc9aeb976955a3e79ced7f8986da578d88ce77c",
+  "originHash" : "063c457237b5367b0d9b3dd0bbb524557b0c752fc68a1f0fa17205b7a0102b2c",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "7ce7be095bc3ed3c98b009532fe2d7698c132614",
         "version" : "1.2024011601.0"
+      }
+    },
+    {
+      "identity" : "activityindicatorview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/ActivityIndicatorView.git",
+      "state" : {
+        "revision" : "9970fd0bb7a05dad0b6566ae1f56937716686b24",
+        "version" : "1.1.1"
       }
     },
     {

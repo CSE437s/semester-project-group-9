@@ -16,6 +16,7 @@ struct ProfileView: View {
     @State var alertMessage = ""
     @State var showingAlert = false
     @State var showContentView = false
+//    @State var showChannelView = false
     
     init(currentUser: User) {
         self.viewModel = ProfileViewModel(currentUser: currentUser)
@@ -69,8 +70,10 @@ struct ProfileView: View {
                         if (UserDefaults.standard.string(forKey: "email") != user.email) {
                             Button {
                                 createDM(user: user)
+//                                showChannelView = true
                                 alertMessage = "DM with \(user.firstName) \(user.lastName) created. Find it in your BearChat channel list!"
                                 showingAlert = true
+
                             } label: {
                                 Text("Direct Message " + user.firstName + " " + user.lastName)
                                     .foregroundColor(.white)
@@ -81,12 +84,16 @@ struct ProfileView: View {
                                     .cornerRadius(12)
 
                             }
+//                            .fullScreenCover(isPresented: $showChannelView, onDismiss: nil) {
+//                                ChannelListView()
+//                            }
                             .alert("Direct Message Created", isPresented: $showingAlert) {
                                 Button("OK", role: .cancel) { }
                             }
                             message: {
                                 Text(alertMessage)
                             }
+
                         } else {
   
                             Button {

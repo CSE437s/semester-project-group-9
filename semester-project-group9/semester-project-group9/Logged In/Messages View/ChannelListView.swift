@@ -21,10 +21,10 @@ struct ChannelListView: View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    Text("BearChat Class Channels")
+                    Text("Class Channels")
                         .font(.largeTitle) // Makes the font larger and more prominent
                         .fontWeight(.bold) // Makes the text bold
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
                     // Optionally, add vertical padding for spacing
                         .foregroundStyle(Color(hex: "32652F"))
@@ -49,10 +49,10 @@ struct ChannelListView: View {
                     
                     
                     
-                    Text("BearChat Direct Messages")
+                    Text("Direct Messages")
                         .font(.largeTitle) // Makes the font larger and more prominent
                         .fontWeight(.bold) // Makes the text bold
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
                     // Optionally, add vertical padding for spacing
                         .foregroundStyle(Color(hex: "32652F"))

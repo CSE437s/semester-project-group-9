@@ -89,6 +89,9 @@ struct ProfileView: View {
 //                            }
                             .alert("Direct Message Created", isPresented: $showingAlert) {
                                 Button("OK", role: .cancel) { }
+                                NavigationLink("Go to Messages"){
+                                    ChannelListView()
+                                }
                             }
                             message: {
                                 Text(alertMessage)

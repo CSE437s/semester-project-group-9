@@ -80,7 +80,7 @@ struct ChannelListView: View {
                     }
                                     
                 }
-                .toolbar(.hidden)
+                .toolbar(.visible)
                 .padding(.leading, 0)
 
             }

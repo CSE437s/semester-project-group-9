@@ -32,8 +32,8 @@ struct ChatView: View {
                 
                 Button {
                     if text.count > 0 {
-                        viewModel.sendMessage(messageContent: text, sender: UserDefaults.standard.string(forKey: "email")!
-                                              , docId: channel.id)
+                        viewModel.sendMessage(messageContent: text, sender: UserDefaults.standard.string(forKey: "firstNme")!
+                                              , senderEmail: UserDefaults.standard.string(forKey: "email") ?? "no-email@example.com", docId: channel.id)
                         text = ""
                     }
                 } label: {

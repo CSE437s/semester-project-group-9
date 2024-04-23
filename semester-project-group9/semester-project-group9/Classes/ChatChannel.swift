@@ -23,6 +23,7 @@ class ChannelsViewModel: ObservableObject {
     @Published var classChannels = [ChatChannel]()
     
     func fetchData() {
+        
         if user != nil {
             db.collection("channels").whereField("users", arrayContains: user!).addSnapshotListener({(snapshot, error) in
                 guard let documents = snapshot?.documents else {
@@ -40,10 +41,13 @@ class ChannelsViewModel: ObservableObject {
                 
                 for chatroom in self.chatrooms {
                     if chatroom.title.contains("@wustl.edu") {
+                        //chatroom.title = UserDefaults.standard.string(forKey: "firstNme") ?? "Unknown"
                         self.dms.append(chatroom)
                     } else {
                         self.classChannels.append(chatroom)
                     }
+                    
+
                 }
                 
             })

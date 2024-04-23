@@ -39,6 +39,4 @@ struct WebView: UIViewRepresentable {
         webView.load(URLRequest(url: URL(string: urlString)!))
     }
 }
-#Preview {
-    WebView()
-}
+

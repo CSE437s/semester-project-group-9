@@ -74,6 +74,3 @@ struct ChannelCard: View {
     
 }
 
-#Preview {
-    ChannelCard(channel: ChatChannel(id: "", title: "Web Development", joinCode: ""))
-}

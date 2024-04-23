@@ -68,6 +68,3 @@ struct ClassCard: View {
     }
 }
 
-#Preview {
-    ClassCard(course: Class(classIdentifier: "webdev", name: "Web Development", building_room: "Urbauer / 222", days: "-T-R---", times: "2:30PM-3:50PM"))
-}

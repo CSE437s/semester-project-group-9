@@ -90,6 +90,3 @@ struct ChannelListView: View {
     }
 }
 
-#Preview {
-    ChannelListView()
-}

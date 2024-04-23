@@ -205,6 +205,9 @@ struct RegistrationView: View {
                 print(result.user.uid)
                 UserDefaults.standard.set(result.user.uid, forKey: "uid")
                 UserDefaults.standard.set(userEmail, forKey: "email")
+                UserDefaults.standard.set(firstName, forKey: "firstNme")
+                UserDefaults.standard.synchronize()
+                
                 // Proceed with info storage only after successful registration
                 DispatchQueue.main.async {
                     storeUserInformation()

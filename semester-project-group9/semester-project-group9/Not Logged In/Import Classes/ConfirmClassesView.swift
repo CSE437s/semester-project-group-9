@@ -14,7 +14,7 @@ struct ConfirmClassesView: View {
         
     var body: some View {
         VStack {
-            Text("Are these your correct classes? If not, navigate back and re-input your course schedule")
+            Text("Are these your correct classes?")
                 .font(.largeTitle) // Makes the font larger and more prominent
                 .fontWeight(.bold) // Makes the text bold
                 .foregroundColor(.primary) // Uses the primary color, adaptable to light/dark mode
@@ -22,7 +22,13 @@ struct ConfirmClassesView: View {
                 .padding(.leading, 5) // Adds some padding to the left to not stick to the edge
             // Optionally, add vertical padding for spacing
                 .padding()
-            
+            Spacer()
+            Text("If not, navigate back and re-input your course schedule")
+                .font(.title)
+                .foregroundColor(.primary)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.leading, 5)
+                .padding()
             Spacer()
             
             ScrollView {

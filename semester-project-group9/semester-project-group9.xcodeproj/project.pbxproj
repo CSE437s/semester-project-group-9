@@ -48,7 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7317CDA92B7304E200974859 /* semester-project-group9.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "semester-project-group9.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7317CDA92B7304E200974859 /* WashU PeerLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WashU PeerLink.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7317CDAC2B7304E200974859 /* semester_project_group9App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = semester_project_group9App.swift; sourceTree = "<group>"; };
 		7317CDAE2B7304E200974859 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7317CDB02B7304E500974859 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 		7317CDAA2B7304E200974859 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7317CDA92B7304E200974859 /* semester-project-group9.app */,
+				7317CDA92B7304E200974859 /* WashU PeerLink.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -264,7 +264,7 @@
 				73BEF6FF2BD6E4470046711F /* ActivityIndicatorView */,
 			);
 			productName = "semester-project-group9";
-			productReference = 7317CDA92B7304E200974859 /* semester-project-group9.app */;
+			productReference = 7317CDA92B7304E200974859 /* WashU PeerLink.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -494,7 +494,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "adamschwartz.semester-project-group9";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "WashU PeerLink";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -535,7 +535,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 12.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "adamschwartz.semester-project-group9";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "WashU PeerLink";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";

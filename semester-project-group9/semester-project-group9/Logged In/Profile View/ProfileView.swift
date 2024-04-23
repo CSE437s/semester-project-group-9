@@ -17,7 +17,6 @@ struct ProfileView: View {
     @State var showingAlert = false
     @State var showContentView = false
     
-    
     init(currentUser: User) {
         self.viewModel = ProfileViewModel(currentUser: currentUser)
         _currentUser = State(initialValue: currentUser)
@@ -89,7 +88,7 @@ struct ProfileView: View {
                                 Text(alertMessage)
                             }
                         } else {
-                            
+  
                             Button {
                                 signOut()
                             } label: {

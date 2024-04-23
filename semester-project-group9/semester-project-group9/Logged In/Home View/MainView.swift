@@ -17,7 +17,7 @@ enum Tab: String, CaseIterable {
         case .home:
             return "house"
         case .bearChat:
-            return "bubble.left.and.text.bubble.right"
+            return "bubble.left"
         case .profile:
             return "person"
         }

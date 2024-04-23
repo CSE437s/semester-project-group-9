@@ -16,7 +16,7 @@ struct RegistrationView: View {
     @State private var lastName: String = ""
     @State private var firstMajor: String = ""
     @State private var secondMajor: String = ""
-    @State private var graduationYear: String = "2024"
+    @State private var graduationYear: String = ""
     @State private var validInput: Bool = true  // change this to false when input validation is implemented
     @State private var presentImport: Bool = false
     @AppStorage("email") var userEmail: String = ""
@@ -24,6 +24,9 @@ struct RegistrationView: View {
     @State private var alertMessage = ""
     
     let years = ["2024", "2025", "2026", "2027", "2028"]
+    
+    let majors = ["Accounting", "African and African-American Studies", "American Culture Studies", "Ancient Studies", "Anthropology", "Anthropology: Global Health and Environment", "Applied Mathematics", "Applied Science (Chemical Engineering)", "Applied Science (Electrical Engineering)", "Applied Science (Mechanical Engineering)", "Applied Science (Systems Science & Engineering)", "Arabic", "Archaeology", "Architecture", "Art", "Art (Painting)", "Art (Photography)", "Art (Printmaking)", "Art (Sculpture)", "Art (Time-Based + Media Art)", "Art History and Archaeology", "Astrophysics", "Biology", "Biology: Ecology and Evolution", "Biology: Genomics and Computational Biology", "Biology: Microbiology", "Biology: Molecular Biology and Biochemistry", "Biology: Neuroscience", "Biomedical Engineering", "Business and Computer Science", "Chemical Engineering", "Chemistry", "Chemistry: Biochemistry", "Chinese Language and Culture", "Classics", "Communication Design", "Comparative Arts", "Comparative Literature", "Computer Engineering", "Computer Science", "Computer Science + Economics", "Computer Science + Mathematics", "Dance", "Data Science", "Design", "Design (Communication)", "Design (Fashion)", "Development/Global Studies", "Double Majors and the Pre-Medical Program (EECE)", "Drama", "Earth, Environmental, and Planetary Sciences: Earth Science", "Earth, Environmental, and Planetary Sciences: Environmental Science", "Earth, Environmental, and Planetary Sciences: Planetary Science", "East Asian Languages and Cultures", "Economics", "Economics and Computer Science", "Economics and Mathematics", "Economics and Strategy", "Educational Studies", "Electrical Engineering", "Elementary Teacher Education", "English Literature", "English Literature: Creative Writing", "English Literature: Publishing", "Entrepreneurship", "Environmental Analysis", "Environmental Biology", "Environmental Engineering", "Environmental Policy", "Eurasian Studies/Global Studies", "European Studies/Global Studies", "Fashion Design", "Film and Media Studies", "Film and Media Studies: Film and Media Production", "Finance", "Financial Engineering", "French", "Germanic Languages and Literatures", "Global Asias/Global Studies", "Global Cultural Studies/Global Studies", "Global Studies", "Health Care Management", "Hebrew", "History", "Individually Designed Major (BS in Engineering)", "Interdisciplinary Project in the Humanities", "International Affairs/Global Studies", "Italian", "Japanese Language and Culture", "Jewish, Islamic, and Middle Eastern Studies: Comparative Jewish & Islamic Studies", "Jewish, Islamic, and Middle Eastern Studies: Modern Middle Eastern Studies", "K-12 Teacher Education", "Korean Language and Culture", "Latin American Studies", "Linguistics", "Marketing", "Mathematical Sciences", "Mathematics", "Mathematics and Computer Science", "Mathematics and Economics", "Mechanical Engineering", "Middle School Teacher Education", "Music", "Organization and Strategic Management", "Philosophy", "Philosophy: Law and Policy", "Philosophy: Philosophy of Science", "Philosophy: Philosophy Research", "Philosophy-Neuroscience-Psychology: Cognitive Neuroscience", "Philosophy-Neuroscience-Psychology: Language, Cognition and Culture", "Physics", "Political Science", "Psychological & Brain Sciences", "Psychological & Brain Sciences: Cognitive Neuroscience", "Religious Studies", "Romance Languages and Literatures", "Secondary Teacher Education", "Sociology", "Spanish", "Statistics", "Supply Chain, Operations, and Technology", "Systems Science & Engineering", "Urban Studies", "Women, Gender, and Sexuality Studies"]
+        
     
     var body: some View {
         
@@ -77,6 +80,7 @@ struct RegistrationView: View {
 //                    .padding()
                 
                 Picker("Graduation Year", selection: $graduationYear){
+                    Text("Select graduation year")
                     ForEach(years, id: \.self) {
                         Text($0)
                     }
@@ -84,30 +88,33 @@ struct RegistrationView: View {
                 }
                 .padding()
                 
+                Text("Major:")
+                    .padding(.leading)
+                    .font(.caption)
+                
+                Picker("First Major", selection: $firstMajor){
+                    Text("Select major")
+                    ForEach(majors, id: \.self) {
+                        Text($0)
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                }
+                .padding()
+                
+                Text("Second major (if applicable):")
+                    .padding(.leading)
+                    .font(.caption)
+                
+                Picker("Second Major", selection: $secondMajor){
+                    Text("Select second major")
+                    ForEach(majors, id: \.self) {
+                        Text($0)
+                    }
+                    .pickerStyle(WheelPickerStyle())
+                }
+                .padding()
+                
             }
-            Text("Major:")
-                .padding(.leading)
-                .font(.caption)
-            TextField("Major", text: $firstMajor)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
-                        .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
-                )
-                .padding()
-            
-            Text("Second Major (if applicable):")
-                .padding(.leading)
-                .font(.caption)
-            TextField("Second Major (if applicable)", text: $secondMajor)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
-                        .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
-                )
-                .padding()
-            
-            
             
             
             VStack {

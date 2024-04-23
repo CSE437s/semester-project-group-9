@@ -9,9 +9,16 @@ import SwiftUI
 import Firebase
 import FirebaseCore
 import FirebaseFirestore
+import ActivityIndicatorView
 
 struct RegistrationView: View {
     
+    enum loadingState {
+        case loading
+        case loaded
+    }
+
+    @State private var currentLoadingState: loadingState = .loaded
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var firstMajor: String = ""
@@ -30,141 +37,149 @@ struct RegistrationView: View {
     
     var body: some View {
         
-        VStack(alignment: .leading) {
-            
-            
-            Group {
-                Text("Register Account")
-                    .bold()
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding()
-                    .font(.title)
-                
-                //Spacer()
-                
-                
-                Text("First Name:")
-                    .padding(.leading)
-                    .font(.caption)
-                
-                TextField("First Name", text: $firstName)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
-                            .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
-                    )
-                    .padding()
-                
-                
-                Text("Last Name:")
-                    .padding(.leading)
-                    .font(.caption)
-                TextField("Last Name", text: $lastName)
-                    .padding()
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
-                            .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
-                    )
-                    .padding()
-                
-                
-                Text("Graduation year:")
-                    .padding(.leading)
-                    .font(.caption)
-//                TextField("Graduation Year", text: $graduationYear)
-//                    .padding()
-//                    .overlay(
-//                        RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
-//                            .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
-//                    )
-//                    .padding()
-                
-                Picker("Graduation Year", selection: $graduationYear){
-                    Text("Select graduation year")
-                    ForEach(years, id: \.self) {
-                        Text($0)
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                }
-                .padding()
-                
-                Text("Major:")
-                    .padding(.leading)
-                    .font(.caption)
-                
-                Picker("First Major", selection: $firstMajor){
-                    Text("Select major")
-                    ForEach(majors, id: \.self) {
-                        Text($0)
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                }
-                .padding()
-                
-                Text("Second major (if applicable):")
-                    .padding(.leading)
-                    .font(.caption)
-                
-                Picker("Second Major", selection: $secondMajor){
-                    Text("Select second major")
-                    ForEach(majors, id: \.self) {
-                        Text($0)
-                    }
-                    .pickerStyle(WheelPickerStyle())
-                }
-                .padding()
-                
-            }
-            
-            
-            VStack {
-                Spacer()
-                
-                Button {
-                    if validInput {
-                        // create user profile data and upload to database
-                        register()
-                        //                    presentImport = true
-                    }
-                } label : {
-                    Text("Proceed to Class Import")
-                        .foregroundColor(.white)
+        switch currentLoadingState {
+        case .loading:
+            ActivityIndicatorView(isVisible: Binding.constant(true), type: .arcs(count: 5, lineWidth: 3))
+                 .frame(width: 50.0, height: 50.0)
+                 .foregroundColor(Color(hex: "32652F"))
+                .toolbar(.hidden)
+        case .loaded:
+            VStack(alignment: .leading) {
+                Group {
+                    Text("Register Account")
                         .bold()
-                        .font(Font.system(size: 24))
-                        .padding(12)
-                        .background(Color(hex: "32652F"))
-                        .cornerRadius(12)
-
-                }
-                .navigationDestination(isPresented: $presentImport) {
-                    // tutorial/import view
-                    TutorialView()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
+                        .font(.title)
+                    
+                    //Spacer()
+                    
+                    
+                    Text("First Name:")
+                        .padding(.leading)
+                        .font(.caption)
+                    
+                    TextField("First Name", text: $firstName)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
+                                .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
+                        )
+                        .padding()
+                    
+                    
+                    Text("Last Name:")
+                        .padding(.leading)
+                        .font(.caption)
+                    TextField("Last Name", text: $lastName)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
+                                .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
+                        )
+                        .padding()
+                    
+                    
+                    Text("Graduation year:")
+                        .padding(.leading)
+                        .font(.caption)
+    //                TextField("Graduation Year", text: $graduationYear)
+    //                    .padding()
+    //                    .overlay(
+    //                        RoundedRectangle(cornerRadius: 5) // Defines the shape of the outline
+    //                            .stroke(Color.gray, lineWidth: 1) // Sets the color and line width of the outline
+    //                    )
+    //                    .padding()
+                    
+                    Picker("Graduation Year", selection: $graduationYear){
+                        Text("Select graduation year")
+                        ForEach(years, id: \.self) {
+                            Text($0)
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                    }
+                    .padding()
+                    
+                    Text("Major:")
+                        .padding(.leading)
+                        .font(.caption)
+                    
+                    Picker("First Major", selection: $firstMajor){
+                        Text("Select major")
+                        ForEach(majors, id: \.self) {
+                            Text($0)
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                    }
+                    .padding()
+                    
+                    Text("Second major (if applicable):")
+                        .padding(.leading)
+                        .font(.caption)
+                    
+                    Picker("Second Major", selection: $secondMajor){
+                        Text("Select second major")
+                        ForEach(majors, id: \.self) {
+                            Text($0)
+                        }
+                        .pickerStyle(WheelPickerStyle())
+                    }
+                    .padding()
                     
                 }
-                .padding()
-                .frame(maxWidth: UIScreen.main.bounds.width * 0.6)
-                .background(Color.accentColor)
-                .cornerRadius(12)
-                .foregroundColor(.white)
-                Spacer()
                 
                 
-                // TODO: Input validation (if all inputs are valid [no fields empty, graduation year is somewhere between 2024-2030], set the validInput to be true)
-                
-                
-                
-                    .toolbar(.hidden)
-                    .alert("Invalid Input", isPresented: $showingAlert) {
-                        Button("OK", role: .cancel) { }
+                VStack {
+                    Spacer()
+                    
+                    Button {
+                        if validInput {
+                            // create user profile data and upload to database
+                            register()
+                            //                    presentImport = true
+                        }
+                    } label : {
+                        Text("Proceed to Class Import")
+                            .foregroundColor(.white)
+                            .bold()
+                            .font(Font.system(size: 24))
+                            .padding(12)
+                            .background(Color(hex: "32652F"))
+                            .cornerRadius(12)
+
                     }
-                message: {
-                    Text(alertMessage)
+                    .navigationDestination(isPresented: $presentImport) {
+                        // tutorial/import view
+                        TutorialView()
+                        
+                    }
+                    .padding()
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.6)
+                    .cornerRadius(12)
+                    .foregroundColor(.white)
+                    Spacer()
+                    
+                    
+                    // TODO: Input validation (if all inputs are valid [no fields empty, graduation year is somewhere between 2024-2030], set the validInput to be true)
+                    
+                    
+                    
+                        .toolbar(.hidden)
+                        .alert("Invalid Input", isPresented: $showingAlert) {
+                            Button("OK", role: .cancel) { }
+                        }
+                    message: {
+                        Text(alertMessage)
+                    }
+                    
                 }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            
+
+
         }
+        
     }
     
     private func storeUserInformation() {
@@ -187,6 +202,7 @@ struct RegistrationView: View {
                     } catch {
                         print("unable to encode: \(error)")
                     }
+                    currentLoadingState = .loaded
                     presentImport = true
                 }
             }
@@ -203,6 +219,7 @@ struct RegistrationView: View {
     }
     
     private func register() {
+        currentLoadingState = .loading
         let password = UserDefaults.standard.string(forKey: "pass")!
         Auth.auth().createUser(withEmail: userEmail, password: password) { result, error in
             if let error = error {

@@ -12,8 +12,11 @@ struct WebView: UIViewRepresentable {
     
     let webView: WKWebView
     
-    init() {
+    let url: URL
+    
+    init(url: URL) {
         self.webView = WKWebView()
+        self.url = url
         webView.allowsLinkPreview = true
     }
     
@@ -23,7 +26,8 @@ struct WebView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        
+        let request = URLRequest(url: url)
+        webView.load(request)
     }
     
     func goBack(){

@@ -13,8 +13,7 @@ struct ImportClassesView: View {
     @State private var presentHome: Bool = false
     @State private var validInput: Bool = true // TODO: change to false when input validation is implemented
     @StateObject var viewModel: ImportViewModel = ImportViewModel()
-    let webView = WebView()
-    let urlString = "https://acadinfo.wustl.edu/m/"
+    let webView = WebView(url: URL(string: "https://acadinfo.wustl.edu/m/")!)
     
     var body: some View {
         

@@ -39,31 +39,30 @@ struct ClassView: View {
                 .toolbar(.hidden)
         case .loaded(let roster):
             VStack {
-                Text(currentClass.name)
-                Text("Class Times: \(currentClass.days) \(currentClass.times)")
-                Text("Location: \(currentClass.building_room)")
+                ClassCard(course: currentClass)
                 NavigationLink {
                     ChatView(channel: viewModel.classChannel[0])
                 } label: {
-                    VStack {
                         Text("Class Chatroom")
-                    }
+                            .foregroundColor(.white)
+                            .bold()
+                            .font(Font.system(size: 24))
+                            .padding(12)
+                            .background(Color(hex: "32652F"))
+                            .cornerRadius(12)
                 }
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 12).fill(Color.accentColor))
                 .foregroundColor(.white)
                 .frame(width: UIScreen.main.bounds.width - 20)
                 .cornerRadius(12)
                 
-                List {
                     ForEach(roster) { classmate in
                         NavigationLink {
                             ProfileView(currentUser: classmate)
                         } label: {
-                            Text(classmate.firstName + " " + classmate.lastName)
+                            StudentCard(student: classmate.firstName + " " + classmate.lastName)
                         }
                     }
-                }
             }
         }
     }

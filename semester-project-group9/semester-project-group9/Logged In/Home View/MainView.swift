@@ -121,7 +121,7 @@ struct Home: View {
                     /// Bug on iOS 16.4
                     // .toolbar(.hidden, for: .tabBar)
                 
-                ChannelListView()
+                ChannelListView(navigatedFromProfile: false)
                     .tag(Tab.bearChat)
                     /// Hiding Native Tab Bar
                     /// Bug on iOS 16.4

@@ -42,4 +42,16 @@ class ProfileViewModel: ObservableObject {
         })
     }
     
+    func updateUser(newData: [String : String], completion: @escaping () -> Void)  {
+        let docRef = Firestore.firestore().collection("users").document(currentUser.email)
+        docRef.updateData(newData) { error in
+            if let error = error {
+                print("error: \(error)")
+            } else {
+                completion()
+                self.fecthUser()
+            }
+        }
+    }
+    
 }

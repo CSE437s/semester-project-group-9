@@ -37,6 +37,7 @@
 		73BEF6FD2BD6DB6B0046711F /* ClassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEF6FC2BD6DB6B0046711F /* ClassCard.swift */; };
 		73BEF7002BD6E4470046711F /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = 73BEF6FF2BD6E4470046711F /* ActivityIndicatorView */; };
 		73BEF7022BD6F7890046711F /* ChannelCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEF7012BD6F7890046711F /* ChannelCard.swift */; };
+		73BEF7042BD864CA0046711F /* StudentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BEF7032BD864CA0046711F /* StudentCard.swift */; };
 		A80A06692B8E34E90041D48C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = A80A06682B8E34E90041D48C /* FirebaseAnalytics */; };
 		A80A066B2B8E34E90041D48C /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = A80A066A2B8E34E90041D48C /* FirebaseAnalyticsOnDeviceConversion */; };
 		A80A066D2B8E34E90041D48C /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A80A066C2B8E34E90041D48C /* FirebaseAnalyticsSwift */; };
@@ -79,6 +80,7 @@
 		7390CB392B8CA5C6008C969E /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		73BEF6FC2BD6DB6B0046711F /* ClassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCard.swift; sourceTree = "<group>"; };
 		73BEF7012BD6F7890046711F /* ChannelCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCard.swift; sourceTree = "<group>"; };
+		73BEF7032BD864CA0046711F /* StudentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 				734AE7A02BB2B36B00DC9ADA /* MainView.swift */,
 				7390CB272B8C6C5F008C969E /* LoggedInHomeViewModel.swift */,
 				73BEF6FC2BD6DB6B0046711F /* ClassCard.swift */,
+				73BEF7032BD864CA0046711F /* StudentCard.swift */,
 			);
 			path = "Home View";
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				7390CB1B2B8C344F008C969E /* RegistrationView.swift in Sources */,
 				7390CB1D2B8C4973008C969E /* ImportClassesView.swift in Sources */,
 				7390CB2A2B8C6C8F008C969E /* Class.swift in Sources */,
+				73BEF7042BD864CA0046711F /* StudentCard.swift in Sources */,
 				73BEF6FD2BD6DB6B0046711F /* ClassCard.swift in Sources */,
 				7390CB232B8C57E2008C969E /* ImportViewModel.swift in Sources */,
 				734AE7962BB29B5300DC9ADA /* Message.swift in Sources */,

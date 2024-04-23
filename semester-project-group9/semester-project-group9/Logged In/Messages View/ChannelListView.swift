@@ -10,8 +10,10 @@ import SwiftUI
 struct ChannelListView: View {
     
     @ObservedObject var viewModel = ChannelsViewModel()
+    let fromProfile: Bool
     
-    init() {
+    init(navigatedFromProfile: Bool) {
+        fromProfile = navigatedFromProfile
         viewModel.fetchData()
     }
     
@@ -80,9 +82,8 @@ struct ChannelListView: View {
                     }
                                     
                 }
-                .toolbar(.visible)
+                .toolbar(fromProfile ? .visible : .hidden)
                 .padding(.leading, 0)
-
             }
 
         }
